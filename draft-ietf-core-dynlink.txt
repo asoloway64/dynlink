@@ -5,7 +5,7 @@
 CoRE Working Group                                             Z. Shelby
 Internet-Draft                                                       ARM
 Intended status: Informational                                   M. Vial
-Expires: September 19, 2018                           Schneider-Electric
+Expires: October 7, 2018                              Schneider-Electric
                                                                M. Koster
                                                              SmartThings
                                                                C. Groves
@@ -13,7 +13,7 @@ Expires: September 19, 2018                           Schneider-Electric
                                                                   Huawei
                                                       B. Silverajan, Ed.
                                         Tampere University of Technology
-                                                          March 18, 2018
+                                                          April 05, 2018
 
 
      Dynamic Resource Linking for Constrained RESTful Environments
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 19, 2018.
+   This Internet-Draft will expire on October 7, 2018.
 
 
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 1]
+Shelby, et al.           Expires October 7, 2018                [Page 1]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 2]
+Shelby, et al.           Expires October 7, 2018                [Page 2]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
      A.2.  Greater Than (gt) and Period Max (pmax) example . . . . .  16
@@ -165,9 +165,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 3]
+Shelby, et al.           Expires October 7, 2018                [Page 3]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
 3.  Link Bindings
@@ -221,9 +221,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 4]
+Shelby, et al.           Expires October 7, 2018                [Page 4]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    The description of a binding method must define the following
@@ -277,9 +277,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 5]
+Shelby, et al.           Expires October 7, 2018                [Page 5]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    conditions are met.  The binding entry for this method MUST be stored
@@ -333,9 +333,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 6]
+Shelby, et al.           Expires October 7, 2018                [Page 6]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    period is up to the synchronization initiator.  The minimum period
@@ -389,9 +389,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 7]
+Shelby, et al.           Expires October 7, 2018                [Page 7]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
 3.3.6.  Less Than (lt)
@@ -445,9 +445,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 8]
+Shelby, et al.           Expires October 7, 2018                [Page 8]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
 3.3.8.  Attribute Interactions
@@ -501,9 +501,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018               [Page 9]
+Shelby, et al.           Expires October 7, 2018                [Page 9]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    If pmin and pmax are present in a query then they take precedence
@@ -557,9 +557,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 10]
+Shelby, et al.           Expires October 7, 2018               [Page 10]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    The Binding interface is used to manipulate a binding table.  A
@@ -613,9 +613,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 11]
+Shelby, et al.           Expires October 7, 2018               [Page 11]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    by including the values in the query string of a PUT.  Before being
@@ -669,9 +669,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 12]
+Shelby, et al.           Expires October 7, 2018               [Page 12]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
 6.  IANA Considerations
@@ -725,9 +725,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 13]
+Shelby, et al.           Expires October 7, 2018               [Page 13]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
 8.  Changelog
@@ -781,9 +781,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 14]
+Shelby, et al.           Expires October 7, 2018               [Page 14]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    o  Clause 4.1: Added a clarification that individual resources may be
@@ -837,9 +837,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 15]
+Shelby, et al.           Expires October 7, 2018               [Page 15]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
 Appendix A.  Examples
@@ -893,9 +893,9 @@ A.2.  Greater Than (gt) and Period Max (pmax) example
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 16]
+Shelby, et al.           Expires October 7, 2018               [Page 16]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
     5                 |      |                Uri-Path: temperature
@@ -949,9 +949,9 @@ Authors' Addresses
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 17]
+Shelby, et al.           Expires October 7, 2018               [Page 17]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    Zach Shelby
@@ -1005,9 +1005,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 18]
+Shelby, et al.           Expires October 7, 2018               [Page 18]
 
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
+Internet-Draft      Dynamic Resource Linking for CoRE         April 2018
 
 
    Bilhanan Silverajan (editor)
@@ -1061,4 +1061,4 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2018
 
 
 
-Shelby, et al.         Expires September 19, 2018              [Page 19]
+Shelby, et al.           Expires October 7, 2018               [Page 19]
