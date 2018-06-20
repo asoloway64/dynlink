@@ -81,31 +81,31 @@ Table of Contents
      3.1.  Binding Methods . . . . . . . . . . . . . . . . . . . . .   4
        3.1.1.  Polling . . . . . . . . . . . . . . . . . . . . . . .   5
        3.1.2.  Observe . . . . . . . . . . . . . . . . . . . . . . .   5
-       3.1.3.  Push  . . . . . . . . . . . . . . . . . . . . . . . .   5
+       3.1.3.  Push  . . . . . . . . . . . . . . . . . . . . . . . .   6
      3.2.  Link Relation . . . . . . . . . . . . . . . . . . . . . .   6
      3.3.  Binding Attributes  . . . . . . . . . . . . . . . . . . .   6
-       3.3.1.  Bind Method (bind)  . . . . . . . . . . . . . . . . .   6
-       3.3.2.  Minimum Period (pmin) . . . . . . . . . . . . . . . .   6
+       3.3.1.  Bind Method (bind)  . . . . . . . . . . . . . . . . .   7
+       3.3.2.  Minimum Period (pmin) . . . . . . . . . . . . . . . .   7
        3.3.3.  Maximum Period (pmax) . . . . . . . . . . . . . . . .   7
-       3.3.4.  Change Step (st)  . . . . . . . . . . . . . . . . . .   7
-       3.3.5.  Greater Than (gt) . . . . . . . . . . . . . . . . . .   7
+       3.3.4.  Change Step (st)  . . . . . . . . . . . . . . . . . .   8
+       3.3.5.  Greater Than (gt) . . . . . . . . . . . . . . . . . .   8
        3.3.6.  Less Than (lt)  . . . . . . . . . . . . . . . . . . .   8
        3.3.7.  Notification Band (band)  . . . . . . . . . . . . . .   8
        3.3.8.  Attribute Interactions  . . . . . . . . . . . . . . .   9
    4.  Binding Table . . . . . . . . . . . . . . . . . . . . . . . .  10
-     4.1.  Binding Interface Description . . . . . . . . . . . . . .  10
-     4.2.  Resource Observation Attributes . . . . . . . . . . . . .  11
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
+     4.1.  Binding Interface Description . . . . . . . . . . . . . .  11
+     4.2.  Resource Observation Attributes . . . . . . . . . . . . .  12
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  13
      6.1.  Interface Description . . . . . . . . . . . . . . . . . .  13
-     6.2.  Link Relation Type  . . . . . . . . . . . . . . . . . . .  13
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  13
+     6.2.  Link Relation Type  . . . . . . . . . . . . . . . . . . .  14
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  14
    8.  Changelog . . . . . . . . . . . . . . . . . . . . . . . . . .  14
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  15
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  15
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  16
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  16
    Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  16
-     A.1.  Greater Than (gt) example . . . . . . . . . . . . . . . .  16
+     A.1.  Greater Than (gt) example . . . . . . . . . . . . . . . .  17
 
 
 
@@ -127,13 +127,14 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
 
    This specification introduces the concept of a Link Binding, which
    defines a new link relation type to create a dynamic link between
-   resources over which to exchange state updates.  Specifically, a Link
-   Binding is a link for binding the state of two resources together
-   such that updates to one are sent over the link to the other.  CoRE
-   Link Format representations are used to configure, inspect, and
-   maintain Link Bindings.  This specification additionally defines a
-   set of conditional Observe Attributes for use with Link Bindings and
-   with the standalone CoRE Observe [RFC7641] method.
+   resources over which state updates are conveyed.  Specifically, a
+   Link Binding is a unidirectional link for binding the states of
+   source and destination resources together such that updates to one
+   are sent over the link to the other.  CoRE Link Format
+   representations are used to configure, inspect, and maintain Link
+   Bindings.  This specification additionally defines a set of
+   conditional Observe Attributes for use with Link Bindings and with
+   the standalone CoRE Observe [RFC7641] method.
 
 2.  Terminology
 
@@ -160,8 +161,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
 
    Notification Band:  A resource value range that results in state
       sychronization.  The value range may be bounded by a minimum and
-      maximum value or may be unbounded having either a minimum or
-      maximum value.
+
 
 
 
@@ -169,6 +169,9 @@ Shelby, et al.          Expires December 22, 2018               [Page 3]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
 
+
+      maximum value or may be unbounded having either a minimum or
+      maximum value.
 
 3.  Link Bindings
 
@@ -206,6 +209,23 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    The following table gives a summary of the binding methods defined in
    this specification.
 
+
+
+
+
+
+
+
+
+
+
+
+
+Shelby, et al.          Expires December 22, 2018               [Page 4]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
+
           +---------+------------+-------------+---------------+
           | Name    | Identifier | Location    | Method        |
           +---------+------------+-------------+---------------+
@@ -217,14 +237,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
           +---------+------------+-------------+---------------+
 
                       Table 1: Binding Method Summary
-
-
-
-
-Shelby, et al.          Expires December 22, 2018               [Page 4]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
 
    The description of a binding method must define the following
    aspects:
@@ -262,6 +274,14 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    destination endpoint and the source resource.  On each notification
    the content from the source resource is copied to the destination
    resource.  The creation of the observation relationship requires the
+
+
+
+Shelby, et al.          Expires December 22, 2018               [Page 5]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
+
    CoAP Observation mechanism [RFC7641] hence this method is only
    permitted when the resources are made available over CoAP.  The
    binding entry for this method MUST be stored on the destination
@@ -274,14 +294,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    sends PUT requests to the destination resource when the binding
    condition attributes are satisfied for the source resource.  The
    source endpoint MUST only send a notification request if the binding
-
-
-
-Shelby, et al.          Expires December 22, 2018               [Page 5]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
    conditions are met.  The binding entry for this method MUST be stored
    on the source endpoint.
 
@@ -299,6 +311,32 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    Web link attributes allow a fine-grained control of the type of state
    synchronization along with the conditions that trigger an update.
    This specification defines the attributes below:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Shelby, et al.          Expires December 22, 2018               [Page 6]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
            +--------------------+-----------+------------------+
            | Attribute          | Parameter | Value            |
@@ -330,14 +368,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    When present, the minimum period indicates the minimum time to wait
    (in seconds) before triggering a new state synchronization (even if
    it has changed).  In the absence of this parameter, the minimum
-
-
-
-Shelby, et al.          Expires December 22, 2018               [Page 6]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
    period is up to the synchronization initiator.  The minimum period
    MUST be greater than zero otherwise the receiver MUST return a CoAP
    error code 4.00 "Bad Request" (or equivalent).
@@ -351,6 +381,18 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    MUST be greater than zero and MUST be greater than the minimum period
    parameter (if present) otherwise the receiver MUST return a CoAP
    error code 4.00 "Bad Request" (or equivalent).
+
+
+
+
+
+
+
+
+Shelby, et al.          Expires December 22, 2018               [Page 7]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
 3.3.4.  Change Step (st)
 
@@ -383,17 +425,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    limit value and then exceeds the upper limit then a new state
    synchronization is generated.
 
-
-
-
-
-
-
-Shelby, et al.          Expires December 22, 2018               [Page 7]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
 3.3.6.  Less Than (lt)
 
    When present, Less Than indicates the lower limit value the resource
@@ -411,6 +442,14 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    The notification band attribute allows a bounded or unbounded (based
    on a minimum or maximum) value range that may trigger multiple state
    synchronizations.  This enables use cases where different ranges
+
+
+
+Shelby, et al.          Expires December 22, 2018               [Page 8]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
+
    results in differing behaviour.  For example: monitoring the
    temperature of machinery.  Whilst the temperature is in the normal
    operating range only periodic observations are needed.  However as
@@ -438,18 +477,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    the notification band maximum.  If gt is not present there is no
    maximum value for the band.
 
-
-
-
-
-
-
-
-Shelby, et al.          Expires December 22, 2018               [Page 8]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
 3.3.8.  Attribute Interactions
 
    Pmin, pmax, st, gt and lt may be present in the same query.
@@ -471,6 +498,13 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    If st is included in a query with a gt or lt attribute then state
    synchronizations occur only when the conditions described by st AND
    gt or st AND lt are met.
+
+
+
+Shelby, et al.          Expires December 22, 2018               [Page 9]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
    To enable an notification band at least the notification band minimum
    or maximum MUST be set.  If both the notification band minimum and
@@ -499,13 +533,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    e.g. updating the resource when a temperature sensor value changes by
    0.001 degree versus 1 degree.
 
-
-
-Shelby, et al.          Expires December 22, 2018               [Page 9]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
    If pmin and pmax are present in a query then they take precedence
    over the other parameters.  Thus even if the notification band
    minimum and maximum are met if pmin has not been exceeded then no
@@ -527,6 +554,13 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    bindings on a endpoint.  A binding table resource MUST support the
    Binding interface defined below.  A profile SHOULD allow only one
    resource table per endpoint.
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 10]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
 4.1.  Binding Interface Description
 
@@ -554,14 +588,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
 
                   Table 3: Binding Interface Description
 
-
-
-
-Shelby, et al.          Expires December 22, 2018              [Page 10]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
    The Binding interface is used to manipulate a binding table.  A
    request with a POST method and a content format of application/link-
    format simply appends new bindings to the table.  All links in the
@@ -572,6 +598,25 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
 
    The following example shows requests for adding, retrieving and
    deleting bindings in a binding table.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 11]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
    Req: POST /bnd/ (Content-Format: application/link-format)
    <coap://sensor.example.com/s/light>;
@@ -609,17 +654,25 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    These query parameters MUST be treated as resources that are read
    using GET and updated using PUT, and MUST NOT be included in the
    Observe request.  Multiple parameters MAY be updated at the same time
+   by including the values in the query string of a PUT.  Before being
+   updated, these parameters have no default value.
 
 
 
 
-Shelby, et al.          Expires December 22, 2018              [Page 11]
+
+
+
+
+
+
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 12]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
 
-
-   by including the values in the query string of a PUT.  Before being
-   updated, these parameters have no default value.
 
         +-------------------+------------------+------------------+
         | Attribute Name    | Parameter        | Data Format      |
@@ -662,24 +715,20 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    attempt to take advantage of a poorly implemented client for example
    to crash the node or perform denial of service.
 
-
-
-
-
-
-
-
-Shelby, et al.          Expires December 22, 2018              [Page 12]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
 6.  IANA Considerations
 
 6.1.  Interface Description
 
    The specification registers the "binding" CoRE interface description
    link target attribute value as per [RFC6690].
+
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 13]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
    Attribute Value:  core.binding
 
@@ -722,20 +771,20 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    provided useful discussion and input to the concepts in this
    specification.
 
-
-
-
-Shelby, et al.          Expires December 22, 2018              [Page 13]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
 8.  Changelog
 
    draft-ietf-core-dynlink-05
 
    o  Addition of a band modifier for gt and lt, adapted from draft-
       groves-core-obsattr
+
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 14]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
    o  Removed statement prescribing gt MUST be greater than lt
 
@@ -777,15 +826,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    o  Clause 3.4: Has been simplified to refer to the descriptions in
       3.1.  As the text was largely duplicated.
 
-
-
-
-
-Shelby, et al.          Expires December 22, 2018              [Page 14]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
    o  Clause 4.1: Added a clarification that individual resources may be
       removed from the binding table.
 
@@ -794,6 +834,13 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    draft-ietf-core-dynlink Initial Version 00:
 
    o  This is a copy of draft-groves-core-dynlink-00
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 15]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
    draft-groves-core-dynlink Draft Initial Version 00:
 
@@ -831,17 +878,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
               DOI 10.17487/RFC7252, June 2014,
               <https://www.rfc-editor.org/info/rfc7252>.
 
-
-
-
-
-
-
-Shelby, et al.          Expires December 22, 2018              [Page 15]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
    [RFC7641]  Hartke, K., "Observing Resources in the Constrained
               Application Protocol (CoAP)", RFC 7641,
               DOI 10.17487/RFC7641, September 2015,
@@ -854,6 +890,13 @@ Appendix A.  Examples
 
    Note: For brevity the only the method or response code is shown in
    the header field.
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 16]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
 
 A.1.  Greater Than (gt) example
 
@@ -886,18 +929,6 @@ A.1.  Greater Than (gt) example
       Current State and One of a New State when it passes through the
                       greather than threshold of 25.
 
-
-
-
-
-
-
-
-Shelby, et al.          Expires December 22, 2018              [Page 16]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
 A.2.  Greater Than (gt) and Period Max (pmax) example
 
         Observed   CLIENT  SERVER     Actual
@@ -915,6 +946,14 @@ A.2.  Greater Than (gt) and Period Max (pmax) example
    10                 | 2.05 |                   Token: 0x4a
    11    18.5 Cel     |      |                 Observe: 9
    12                 |      |                 Payload: "18.5 Cel"
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 17]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
+
+
    13                 |      |
    14                 |      |
    15                 |      |
@@ -946,14 +985,6 @@ A.2.  Greater Than (gt) and Period Max (pmax) example
    41                 |      |
    42                 |      |
 
-
-
-
-Shelby, et al.          Expires December 22, 2018              [Page 17]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
       Figure 3: Client Registers and Receives one Notification of the
    Current State, one when pmax time expires and one of a new State when
            it passes through the greather than threshold of 25.
@@ -968,6 +999,15 @@ Authors' Addresses
 
    Phone: +1-408-203-9434
    Email: zach.shelby@arm.com
+
+
+
+
+
+
+Shelby, et al.          Expires December 22, 2018              [Page 18]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
 
 
    Matthieu Vial
@@ -1004,12 +1044,6 @@ Authors' Addresses
    Email: jintao.zhu@huawei.com
 
 
-
-Shelby, et al.          Expires December 22, 2018              [Page 18]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
-
-
    Bilhanan Silverajan (editor)
    Tampere University of Technology
    Korkeakoulunkatu 10
@@ -1017,40 +1051,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          June 2018
    Finland
 
    Email: bilhanan.silverajan@tut.fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
