@@ -696,6 +696,11 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 11.  Changelog
 
+   draft-ietf-core-dynlink-06 * Document restructure and refactoring
+   into three main sections * Clarifications on band usage *
+   Implementation considerations introduced * Additional text on
+   security considerations
+
    draft-ietf-core-dynlink-05
 
    o  Addition of a band modifier for gt and lt, adapted from draft-
@@ -718,17 +723,17 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
       conlict with the core resource directory draft lifetime "lt"
       attribute.
 
-   o  Clause 6.1: Addressed the editor's note by changing the link
-      target attribute to "core.binding".
-
-   o  Added Appendix A for examples.
-
 
 
 Shelby, et al.           Expires January 3, 2019               [Page 13]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
+
+   o  Clause 6.1: Addressed the editor's note by changing the link
+      target attribute to "core.binding".
+
+   o  Added Appendix A for examples.
 
    draft-ietf-core-dynlink-01
 
@@ -774,17 +779,16 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC6690]  Shelby, Z., "Constrained RESTful Environments (CoRE) Link
-              Format", RFC 6690, DOI 10.17487/RFC6690, August 2012,
-              <https://www.rfc-editor.org/info/rfc6690>.
-
-
 
 
 Shelby, et al.           Expires January 3, 2019               [Page 14]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
+
+   [RFC6690]  Shelby, Z., "Constrained RESTful Environments (CoRE) Link
+              Format", RFC 6690, DOI 10.17487/RFC6690, August 2012,
+              <https://www.rfc-editor.org/info/rfc6690>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -815,10 +819,6 @@ Appendix A.  Examples
    the header field.
 
 A.1.  Greater Than (gt) example
-
-
-
-
 
 
 
