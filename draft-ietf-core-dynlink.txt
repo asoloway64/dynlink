@@ -100,8 +100,8 @@ Table of Contents
    9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  13
    10. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  13
    11. Changelog . . . . . . . . . . . . . . . . . . . . . . . . . .  13
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
-     12.1.  Normative References . . . . . . . . . . . . . . . . . .  14
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  15
      12.2.  Informative References . . . . . . . . . . . . . . . . .  15
    Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  15
      A.1.  Greater Than (gt) example . . . . . . . . . . . . . . . .  15
@@ -696,10 +696,15 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 11.  Changelog
 
-   draft-ietf-core-dynlink-06 * Document restructure and refactoring
-   into three main sections * Clarifications on band usage *
-   Implementation considerations introduced * Additional text on
-   security considerations
+   draft-ietf-core-dynlink-06
+
+   o  Document restructure and refactoring into three main sections
+
+   o  Clarifications on band usage
+
+   o  Implementation considerations introduced
+
+   o  Additional text on security considerations
 
    draft-ietf-core-dynlink-05
 
@@ -718,17 +723,17 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
    draft-ietf-core-dynlink-02
 
-   o  General: Changed the name of the greater than attribute "gt" to
-      "gth" and the name of the less than attribute "lt" to "lth" due to
-      conlict with the core resource directory draft lifetime "lt"
-      attribute.
-
 
 
 Shelby, et al.           Expires January 3, 2019               [Page 13]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
+
+   o  General: Changed the name of the greater than attribute "gt" to
+      "gth" and the name of the less than attribute "lt" to "lth" due to
+      conlict with the core resource directory draft lifetime "lt"
+      attribute.
 
    o  Clause 6.1: Addressed the editor's note by changing the link
       target attribute to "core.binding".
@@ -770,6 +775,17 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    o  The WADL description has been dropped in favour of a thorough
       textual description of the REST API.
 
+
+
+
+
+
+
+Shelby, et al.           Expires January 3, 2019               [Page 14]
+
+Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+
+
 12.  References
 
 12.1.  Normative References
@@ -778,13 +794,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
-
-
-
-Shelby, et al.           Expires January 3, 2019               [Page 14]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
-
 
    [RFC6690]  Shelby, Z., "Constrained RESTful Environments (CoRE) Link
               Format", RFC 6690, DOI 10.17487/RFC6690, August 2012,
@@ -819,15 +828,6 @@ Appendix A.  Examples
    the header field.
 
 A.1.  Greater Than (gt) example
-
-
-
-
-
-
-
-
-
 
 
 
