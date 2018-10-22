@@ -315,12 +315,12 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.10.0 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.11.1 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Shelby, Z., Koster, M., Groves, C., Zhu, J., and B. Silverajan, Ed." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-dynlink-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-07-19" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-10-22" />
   <meta name="dct.abstract" content="For CoAP (RFC7252), Dynamic linking of state updates between resources, either on an endpoint or between endpoints, is defined with the concept of Link Bindings. This specification defines conditional observation attributes that work with Link Bindings or with CoAP Observe (RFC7641)." />
   <meta name="description" content="For CoAP (RFC7252), Dynamic linking of state updates between resources, either on an endpoint or between endpoints, is defined with the concept of Link Bindings. This specification defines conditional observation attributes that work with Link Bindings or with CoAP Observe (RFC7641)." />
 
@@ -344,7 +344,7 @@ ul.toc li {
 <td class="right">M. Koster</td>
 </tr>
 <tr>
-<td class="left">Expires: January 20, 2019</td>
+<td class="left">Expires: April 25, 2019</td>
 <td class="right">SmartThings</td>
 </tr>
 <tr>
@@ -373,7 +373,7 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">July 19, 2018</td>
+<td class="right">October 22, 2018</td>
 </tr>
 
     	
@@ -391,7 +391,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on January 20, 2019.</p>
+<p>This Internet-Draft will expire on April 25, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -661,7 +661,39 @@ ul.toc li {
 <h1 id="rfc.section.4.7">
 <a href="#rfc.section.4.7">4.7.</a> <a href="#attribute-interactions" id="attribute-interactions">Attribute Interactions</a>
 </h1>
-<p id="rfc.section.4.7.p.1">Pmin, pmax, st, gt and lt may be present in the same query. Parameters are not defined at multiple prioritization levels. Instead, the server state machine generates a notification whenever any of the parameter conditions are met, after which it performs a reset on all the requested conditions. State synchronization also occurs only once even if there are multiple conditions being met at the same time.</p>
+<p id="rfc.section.4.7.p.1">Pmin, pmax, st, gt and lt may be present in the same query. Parameters are not defined at multiple prioritization levels. Instead, the server state machine generates a notification whenever any of the parameter conditions are met, after which it performs a reset on all the requested conditions. State synchronization also occurs only once even if there are multiple conditions being met at the same time. The reference code below illustrates how notifications are generated.</p>
+<div id="rfc.figure.1"></div>
+<div id="figattrint"></div>
+<pre>
+bool notifiable( Resource * r ) {
+
+#define BAND r-&gt;band
+#define SCALAR_TYPE ( num_type == r-&gt;type )
+#define STRING_TYPE ( str_type == r-&gt;type )
+#define BOOLEAN_TYPE ( bool_type == r-&gt;type )
+#define PMIN_EX ( r-&gt;last_sample_time - r-&gt;last_rep_time &gt;= r-&gt;pmin )
+#define PMAX_EX ( r-&gt;last_sample_time - r-&gt;last_rep_time &gt; r-&gt;pmax )
+#define LT_EX ( r-&gt;v &lt; r-&gt;lt ^ r-&gt;last_rep_v &lt; r-&gt;lt )
+#define GT_EX ( r-&gt;v &gt; r-&gt;gt ^ r-&gt;last_rep_v &gt; r-&gt;gt )
+#define ST_EX ( abs( r-&gt;v - r-&gt;last_rep_v ) &gt;= r-&gt;st )
+#define IN_BAND ( ( r-&gt;gt &lt;= r-&gt;v &amp;&amp; r-&gt;v &lt;= r-&gt;lt ) || ( r-&gt;lt &lt;= r-&gt;gt &amp;&amp; r-&gt;gt &lt;= r-&gt;v ) || ( r-&gt;v &lt;= r-&gt;lt &amp;&amp; r-&gt;lt &lt;= r-&gt;gt ) )
+#define VB_CHANGE ( r-&gt;vb != r-&gt;last_rep_vb )
+#define VS_CHANGE ( r-&gt;vs != r-&gt;last_rep_vs )
+
+  return (
+    PMIN_EX &amp;&amp;
+    ( SCALAR_TYPE ?
+      ( ( !BAND &amp;&amp; ( GT_EX || LT_EX || ST_EX || PMAX_EX ) ) ||
+        ( BAND &amp;&amp; IN_BAND &amp;&amp; ( ST_EX || PMAX_EX) ) )
+    : STRING_TYPE ?
+      ( VS_CHANGE || PMAX_EX )
+    : BOOLEAN_TYPE ?
+      ( VB_CHANGE || PMAX_EX )
+    : false )
+  );
+}
+</pre>
+<p class="figure">Figure 1: Code logic for attribute interactions for observe notification</p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#binding_table" id="binding_table">Binding Table</a>
 </h1>
@@ -685,9 +717,9 @@ ul.toc li {
 <td class="left">link-format</td>
 </tr></tbody>
 </table>
-<p id="rfc.section.5.p.4">The Binding interface is used to manipulate a binding table. A request with a POST method and a content format of application/link-format simply appends new bindings to the table. All links in the payload MUST have a relation type "boundTo". A GET request simply returns the current state of a binding table whereas a DELETE request empties the table. Individual entries may be deleted from the table by specifying the resource path in a DELETE request.</p>
+<p id="rfc.section.5.p.4">The Binding interface is used to manipulate a binding table. A request with a POST method and a content format of application/link-format simply appends new bindings to the table. All links in the payload MUST have a relation type "boundto". A GET request simply returns the current state of a binding table whereas a DELETE request empties the table. Individual entries may be deleted from the table by specifying the resource path in a DELETE request.</p>
 <p id="rfc.section.5.p.5">The following example shows requests for adding, retrieving and deleting bindings in a binding table.</p>
-<div id="rfc.figure.1"></div>
+<div id="rfc.figure.2"></div>
 <div id="figbindexp"></div>
 <pre>
 Req: POST /bnd/ (Content-Format: application/link-format)
@@ -706,7 +738,7 @@ Res: 2.04 Changed
 Req: DELETE /bnd/
 Res: 2.04 Changed
 </pre>
-<p class="figure">Figure 1: Binding Interface Example</p>
+<p class="figure">Figure 2: Binding Interface Example</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#Implementation" id="Implementation">Implementation Considerations</a>
 </h1>
@@ -754,7 +786,7 @@ Res: 2.04 Changed
 <h1 id="rfc.section.9">
 <a href="#rfc.section.9">9.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
 </h1>
-<p id="rfc.section.9.p.1">Acknowledgement is given to colleagues from the SENSEI project who were critical in the initial development of the well-known REST interface concept, to members of the IPSO Alliance where further requirements for interface types have been discussed, and to Szymon Sasin, Cedric Chauvenet, Daniel Gavelle and Carsten Bormann who have provided useful discussion and input to the concepts in this specification.</p>
+<p id="rfc.section.9.p.1">Acknowledgement is given to colleagues from the SENSEI project who were critical in the initial development of the well-known REST interface concept, to members of the IPSO Alliance where further requirements for interface types have been discussed, and to Szymon Sasin, Cedric Chauvenet, Daniel Gavelle and Carsten Bormann who have provided useful discussion and input to the concepts in this specification. Christian Amsuss supplied a comprehensive review of draft -06.</p>
 <h1 id="rfc.section.10">
 <a href="#rfc.section.10">10.</a> <a href="#contributors" id="contributors">Contributors</a>
 </h1>
@@ -770,7 +802,11 @@ EMail: matthieu.vial@schneider-electric.com
 <h1 id="rfc.section.11">
 <a href="#rfc.section.11">11.</a> <a href="#changelog" id="changelog">Changelog</a>
 </h1>
-<p id="rfc.section.11.p.1">draft-ietf-core-dynlink-06</p>
+<p id="rfc.section.11.p.1">draft-ietf-core-dynlink-07</p>
+<p></p>
+
+<ul><li>Added reference code to illustrate attribute interactions for observations</li></ul>
+<p id="rfc.section.11.p.3">draft-ietf-core-dynlink-06</p>
 <p></p>
 
 <ul>
@@ -779,21 +815,21 @@ EMail: matthieu.vial@schneider-electric.com
 <li>Implementation considerations introduced</li>
 <li>Additional text on security considerations</li>
 </ul>
-<p id="rfc.section.11.p.3">draft-ietf-core-dynlink-05</p>
+<p id="rfc.section.11.p.5">draft-ietf-core-dynlink-05</p>
 <p></p>
 
 <ul>
 <li>Addition of a band modifier for gt and lt, adapted from draft-groves-core-obsattr</li>
 <li>Removed statement prescribing gt MUST be greater than lt</li>
 </ul>
-<p id="rfc.section.11.p.5">draft-ietf-core-dynlink-03</p>
+<p id="rfc.section.11.p.7">draft-ietf-core-dynlink-03</p>
 <p></p>
 
 <ul>
 <li>General: Reverted to using &#8220;gt&#8221; and &#8220;lt&#8221; from &#8220;gth&#8221; and &#8220;lth&#8221; for this draft owing to concerns raised that the attributes are already used in LwM2M with the original names &#8220;gt&#8221; and &#8220;lt&#8221;.</li>
 <li>New author and editor added.</li>
 </ul>
-<p id="rfc.section.11.p.7">draft-ietf-core-dynlink-02</p>
+<p id="rfc.section.11.p.9">draft-ietf-core-dynlink-02</p>
 <p></p>
 
 <ul>
@@ -801,7 +837,7 @@ EMail: matthieu.vial@schneider-electric.com
 <li>Clause 6.1: Addressed the editor&#8217;s note by changing the link target attribute to &#8220;core.binding&#8221;.</li>
 <li>Added Appendix A for examples.</li>
 </ul>
-<p id="rfc.section.11.p.9">draft-ietf-core-dynlink-01</p>
+<p id="rfc.section.11.p.11">draft-ietf-core-dynlink-01</p>
 <p></p>
 
 <ul>
@@ -813,11 +849,11 @@ EMail: matthieu.vial@schneider-electric.com
 <li>Clause 4.1: Added a clarification that individual resources may be removed from the binding table.</li>
 <li>Clause 6: Formailised the IANA considerations.</li>
 </ul>
-<p id="rfc.section.11.p.11">draft-ietf-core-dynlink Initial Version 00:</p>
+<p id="rfc.section.11.p.13">draft-ietf-core-dynlink Initial Version 00:</p>
 <p></p>
 
 <ul><li>This is a copy of draft-groves-core-dynlink-00</li></ul>
-<p id="rfc.section.11.p.13">draft-groves-core-dynlink Draft Initial Version 00:</p>
+<p id="rfc.section.11.p.15">draft-groves-core-dynlink Draft Initial Version 00:</p>
 <p></p>
 
 <ul>
@@ -872,7 +908,7 @@ EMail: matthieu.vial@schneider-electric.com
 <h1 id="rfc.appendix.A.1">
 <a href="#rfc.appendix.A.1">A.1.</a> <a href="#greater-than-gt-example" id="greater-than-gt-example">Greater Than (gt) example</a>
 </h1>
-<div id="rfc.figure.2"></div>
+<div id="rfc.figure.3"></div>
 <div id="figbindexp1"></div>
 <pre>
      Observed   CLIENT  SERVER     Actual
@@ -900,11 +936,11 @@ EMail: matthieu.vial@schneider-electric.com
 20                 |      |                 
 21                 |      |
 </pre>
-<p class="figure">Figure 2: Client Registers and Receives one Notification of the Current State and One of a New State when it passes through the greather than threshold of 25.</p>
+<p class="figure">Figure 3: Client Registers and Receives one Notification of the Current State and One of a New State when it passes through the greather than threshold of 25.</p>
 <h1 id="rfc.appendix.A.2">
 <a href="#rfc.appendix.A.2">A.2.</a> <a href="#greater-than-gt-and-period-max-pmax-example" id="greater-than-gt-and-period-max-pmax-example">Greater Than (gt) and Period Max (pmax) example</a>
 </h1>
-<div id="rfc.figure.3"></div>
+<div id="rfc.figure.4"></div>
 <div id="figbindexp2"></div>
 <pre>
      Observed   CLIENT  SERVER     Actual
@@ -953,7 +989,7 @@ EMail: matthieu.vial@schneider-electric.com
 41                 |      |                 
 42                 |      |
 </pre>
-<p class="figure">Figure 3: Client Registers and Receives one Notification of the Current State, one when pmax time expires and one of a new State when it passes through the greather than threshold of 25.</p>
+<p class="figure">Figure 4: Client Registers and Receives one Notification of the Current State, one when pmax time expires and one of a new State when it passes through the greather than threshold of 25.</p>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">

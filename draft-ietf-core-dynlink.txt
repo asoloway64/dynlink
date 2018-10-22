@@ -5,14 +5,14 @@
 CoRE Working Group                                             Z. Shelby
 Internet-Draft                                                       ARM
 Intended status: Informational                                 M. Koster
-Expires: January 20, 2019                                    SmartThings
+Expires: April 25, 2019                                      SmartThings
                                                                C. Groves
 
                                                                   J. Zhu
                                                                   Huawei
                                                       B. Silverajan, Ed.
                                         Tampere University of Technology
-                                                           July 19, 2018
+                                                        October 22, 2018
 
 
      Dynamic Resource Linking for Constrained RESTful Environments
@@ -46,16 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 20, 2019.
+   This Internet-Draft will expire on April 25, 2019.
 
 
 
 
 
 
-Shelby, et al.          Expires January 20, 2019                [Page 1]
+Shelby, et al.           Expires April 25, 2019                 [Page 1]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
 Copyright Notice
@@ -96,25 +96,25 @@ Table of Contents
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
      8.1.  Interface Description . . . . . . . . . . . . . . . . . .  12
-     8.2.  Link Relation Type  . . . . . . . . . . . . . . . . . . .  12
+     8.2.  Link Relation Type  . . . . . . . . . . . . . . . . . . .  13
    9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  13
    10. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  13
    11. Changelog . . . . . . . . . . . . . . . . . . . . . . . . . .  13
    12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
      12.1.  Normative References . . . . . . . . . . . . . . . . . .  15
-     12.2.  Informative References . . . . . . . . . . . . . . . . .  15
-   Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  15
-     A.1.  Greater Than (gt) example . . . . . . . . . . . . . . . .  15
-     A.2.  Greater Than (gt) and Period Max (pmax) example . . . . .  16
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  16
+   Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  16
+     A.1.  Greater Than (gt) example . . . . . . . . . . . . . . . .  16
+     A.2.  Greater Than (gt) and Period Max (pmax) example . . . . .  17
 
 
 
-Shelby, et al.          Expires January 20, 2019                [Page 2]
+Shelby, et al.           Expires April 25, 2019                 [Page 2]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
 
 1.  Introduction
 
@@ -165,9 +165,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 
 
-Shelby, et al.          Expires January 20, 2019                [Page 3]
+Shelby, et al.           Expires April 25, 2019                 [Page 3]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
 3.  Link Bindings
@@ -221,9 +221,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 
 
-Shelby, et al.          Expires January 20, 2019                [Page 4]
+Shelby, et al.           Expires April 25, 2019                 [Page 4]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
           +---------+------------+-------------+---------------+
@@ -277,9 +277,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 
 
-Shelby, et al.          Expires January 20, 2019                [Page 5]
+Shelby, et al.           Expires April 25, 2019                 [Page 5]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
    CoAP Observation mechanism [RFC7641] hence this method is only
@@ -333,9 +333,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 
 
-Shelby, et al.          Expires January 20, 2019                [Page 6]
+Shelby, et al.           Expires April 25, 2019                 [Page 6]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
    These attributes are defined below:
@@ -389,9 +389,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 
 
-Shelby, et al.          Expires January 20, 2019                [Page 7]
+Shelby, et al.           Expires April 25, 2019                 [Page 7]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
    synchronization occurs.  STinit is then set to the state
@@ -445,9 +445,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 
 
-Shelby, et al.          Expires January 20, 2019                [Page 8]
+Shelby, et al.           Expires April 25, 2019                 [Page 8]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
    Without a notification band, a transition across a less than (lt), or
@@ -493,18 +493,49 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    any of the parameter conditions are met, after which it performs a
    reset on all the requested conditions.  State synchronization also
    occurs only once even if there are multiple conditions being met at
-   the same time.
+   the same time.  The reference code below illustrates how
+   notifications are generated.
 
 
 
 
 
 
-
-Shelby, et al.          Expires January 20, 2019                [Page 9]
+Shelby, et al.           Expires April 25, 2019                 [Page 9]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
+
+bool notifiable( Resource * r ) {
+
+#define BAND r->band
+#define SCALAR_TYPE ( num_type == r->type )
+#define STRING_TYPE ( str_type == r->type )
+#define BOOLEAN_TYPE ( bool_type == r->type )
+#define PMIN_EX ( r->last_sample_time - r->last_rep_time >= r->pmin )
+#define PMAX_EX ( r->last_sample_time - r->last_rep_time > r->pmax )
+#define LT_EX ( r->v < r->lt ^ r->last_rep_v < r->lt )
+#define GT_EX ( r->v > r->gt ^ r->last_rep_v > r->gt )
+#define ST_EX ( abs( r->v - r->last_rep_v ) >= r->st )
+#define IN_BAND ( ( r->gt <= r->v && r->v <= r->lt ) || ( r->lt <= r->gt && r->gt <= r->v ) || ( r->v <= r->lt && r->lt <= r->gt ) )
+#define VB_CHANGE ( r->vb != r->last_rep_vb )
+#define VS_CHANGE ( r->vs != r->last_rep_vs )
+
+  return (
+    PMIN_EX &&
+    ( SCALAR_TYPE ?
+      ( ( !BAND && ( GT_EX || LT_EX || ST_EX || PMAX_EX ) ) ||
+        ( BAND && IN_BAND && ( ST_EX || PMAX_EX) ) )
+    : STRING_TYPE ?
+      ( VS_CHANGE || PMAX_EX )
+    : BOOLEAN_TYPE ?
+      ( VB_CHANGE || PMAX_EX )
+    : false )
+  );
+}
+
+        Figure 1: Code logic for attribute interactions for observe
+                               notification
 
 5.  Binding Table
 
@@ -524,6 +555,13 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    CoRE Link Format, it is applicable for use in any REST interface
    definition.
 
+
+
+Shelby, et al.           Expires April 25, 2019                [Page 10]
+
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
+
+
    The Methods column defines the REST methods supported by the
    interface, which are described in more detail below.
 
@@ -538,29 +576,13 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    The Binding interface is used to manipulate a binding table.  A
    request with a POST method and a content format of application/link-
    format simply appends new bindings to the table.  All links in the
-   payload MUST have a relation type "boundTo".  A GET request simply
+   payload MUST have a relation type "boundto".  A GET request simply
    returns the current state of a binding table whereas a DELETE request
    empties the table.  Individual entries may be deleted from the table
    by specifying the resource path in a DELETE request.
 
    The following example shows requests for adding, retrieving and
    deleting bindings in a binding table.
-
-
-
-
-
-
-
-
-
-
-
-
-Shelby, et al.          Expires January 20, 2019               [Page 10]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
-
 
    Req: POST /bnd/ (Content-Format: application/link-format)
    <coap://sensor.example.com/s/light>;
@@ -578,7 +600,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    Req: DELETE /bnd/
    Res: 2.04 Changed
 
-                    Figure 1: Binding Interface Example
+                    Figure 2: Binding Interface Example
 
 6.  Implementation Considerations
 
@@ -588,6 +610,14 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    example: Given BandA (Abmn=10, Bbmx=20) and BandB (Bbmn=21, Bbmx=30).
    If the resource value returns an integer then notifications for
    values between and inclusive of 10 and 30 will be triggered.  Whereas
+
+
+
+Shelby, et al.           Expires April 25, 2019                [Page 11]
+
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
+
+
    if the resolution is to one decimal point (0.1) then notifications
    for values 20.1 to 20.9 will not be triggered.
 
@@ -605,18 +635,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    to how to monitor transactions made by the configuration tool with
    regards to link bindings, as well as any errors that may arise with
    establishing link bindings as well as with established link bindings.
-
-
-
-
-
-
-
-
-Shelby, et al.          Expires January 20, 2019               [Page 11]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
-
 
 7.  Security Considerations
 
@@ -646,6 +664,16 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
    Notes: None
 
+
+
+
+
+
+Shelby, et al.           Expires April 25, 2019                [Page 12]
+
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
+
+
 8.2.  Link Relation Type
 
    This specification registers the new "boundto" link relation type as
@@ -665,15 +693,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
    Application Data:  None
 
-
-
-
-
-Shelby, et al.          Expires January 20, 2019               [Page 12]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
-
-
 9.  Acknowledgements
 
    Acknowledgement is given to colleagues from the SENSEI project who
@@ -682,7 +701,8 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    requirements for interface types have been discussed, and to Szymon
    Sasin, Cedric Chauvenet, Daniel Gavelle and Carsten Bormann who have
    provided useful discussion and input to the concepts in this
-   specification.
+   specification.  Christian Amsuss supplied a comprehensive review of
+   draft -06.
 
 10.  Contributors
 
@@ -696,7 +716,19 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 11.  Changelog
 
+   draft-ietf-core-dynlink-07
+
+   o  Added reference code to illustrate attribute interactions for
+      observations
+
    draft-ietf-core-dynlink-06
+
+
+
+Shelby, et al.           Expires April 25, 2019                [Page 13]
+
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
+
 
    o  Document restructure and refactoring into three main sections
 
@@ -723,13 +755,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
    draft-ietf-core-dynlink-02
 
-
-
-Shelby, et al.          Expires January 20, 2019               [Page 13]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
-
-
    o  General: Changed the name of the greater than attribute "gt" to
       "gth" and the name of the less than attribute "lt" to "lth" due to
       conlict with the core resource directory draft lifetime "lt"
@@ -751,6 +776,15 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
    o  Clause 3.1: The descriptions of the binding attributes have been
       updated to clarify their usage.
+
+
+
+
+
+Shelby, et al.           Expires April 25, 2019                [Page 14]
+
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
+
 
    o  Clause 3.1: A new clause has been added to discuss the
       interactions between the resources.
@@ -775,17 +809,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    o  The WADL description has been dropped in favour of a thorough
       textual description of the REST API.
 
-
-
-
-
-
-
-Shelby, et al.          Expires January 20, 2019               [Page 14]
-
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
-
-
 12.  References
 
 12.1.  Normative References
@@ -806,6 +829,18 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    [RFC8288]  Nottingham, M., "Web Linking", RFC 8288,
               DOI 10.17487/RFC8288, October 2017,
               <https://www.rfc-editor.org/info/rfc8288>.
+
+
+
+
+
+
+
+
+Shelby, et al.           Expires April 25, 2019                [Page 15]
+
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
+
 
 12.2.  Informative References
 
@@ -837,9 +872,30 @@ A.1.  Greater Than (gt) example
 
 
 
-Shelby, et al.          Expires January 20, 2019               [Page 15]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Shelby, et al.           Expires April 25, 2019                [Page 16]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
         Observed   CLIENT  SERVER     Actual
@@ -867,7 +923,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    20                 |      |
    21                 |      |
 
-      Figure 2: Client Registers and Receives one Notification of the
+      Figure 3: Client Registers and Receives one Notification of the
       Current State and One of a New State when it passes through the
                       greather than threshold of 25.
 
@@ -893,9 +949,9 @@ A.2.  Greater Than (gt) and Period Max (pmax) example
 
 
 
-Shelby, et al.          Expires January 20, 2019               [Page 16]
+Shelby, et al.           Expires April 25, 2019                [Page 17]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
    15                 |      |
@@ -927,7 +983,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
    41                 |      |
    42                 |      |
 
-      Figure 3: Client Registers and Receives one Notification of the
+      Figure 4: Client Registers and Receives one Notification of the
    Current State, one when pmax time expires and one of a new State when
            it passes through the greather than threshold of 25.
 
@@ -949,9 +1005,9 @@ Authors' Addresses
 
 
 
-Shelby, et al.          Expires January 20, 2019               [Page 17]
+Shelby, et al.           Expires April 25, 2019                [Page 18]
 
-Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
+Internet-Draft      Dynamic Resource Linking for CoRE       October 2018
 
 
    Michael Koster
@@ -1005,4 +1061,4 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2018
 
 
 
-Shelby, et al.          Expires January 20, 2019               [Page 18]
+Shelby, et al.           Expires April 25, 2019                [Page 19]
