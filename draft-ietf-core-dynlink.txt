@@ -5,14 +5,14 @@
 CoRE Working Group                                             Z. Shelby
 Internet-Draft                                                       ARM
 Intended status: Informational                                 M. Koster
-Expires: September 3, 2019                                   SmartThings
+Expires: September 5, 2019                                   SmartThings
                                                                C. Groves
 
                                                                   J. Zhu
                                                                   Huawei
                                                       B. Silverajan, Ed.
-                                        Tampere University of Technology
-                                                          March 02, 2019
+                                                      Tampere University
+                                                          March 04, 2019
 
 
      Dynamic Resource Linking for Constrained RESTful Environments
@@ -46,14 +46,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 3, 2019.
+   This Internet-Draft will expire on September 5, 2019.
 
 
 
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 1]
+Shelby, et al.          Expires September 5, 2019               [Page 1]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 2]
+Shelby, et al.          Expires September 5, 2019               [Page 2]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -165,7 +165,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 3]
+Shelby, et al.          Expires September 5, 2019               [Page 3]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -221,7 +221,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 4]
+Shelby, et al.          Expires September 5, 2019               [Page 4]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -277,7 +277,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 5]
+Shelby, et al.          Expires September 5, 2019               [Page 5]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -333,7 +333,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 6]
+Shelby, et al.          Expires September 5, 2019               [Page 6]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -389,7 +389,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 7]
+Shelby, et al.          Expires September 5, 2019               [Page 7]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -445,7 +445,7 @@ bool notifiable( Resource * r ) {
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 8]
+Shelby, et al.          Expires September 5, 2019               [Page 8]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -501,7 +501,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019               [Page 9]
+Shelby, et al.          Expires September 5, 2019               [Page 9]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -557,7 +557,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 10]
+Shelby, et al.          Expires September 5, 2019              [Page 10]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -613,7 +613,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 11]
+Shelby, et al.          Expires September 5, 2019              [Page 11]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -669,7 +669,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 12]
+Shelby, et al.          Expires September 5, 2019              [Page 12]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -725,7 +725,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 13]
+Shelby, et al.          Expires September 5, 2019              [Page 13]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -781,7 +781,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 14]
+Shelby, et al.          Expires September 5, 2019              [Page 14]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -837,7 +837,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 15]
+Shelby, et al.          Expires September 5, 2019              [Page 15]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -893,7 +893,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 16]
+Shelby, et al.          Expires September 5, 2019              [Page 16]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -949,7 +949,7 @@ A.1.  Greater Than (gt) example
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 17]
+Shelby, et al.          Expires September 5, 2019              [Page 17]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -1005,7 +1005,7 @@ A.2.  Greater Than (gt) and Period Max (pmax) example
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 18]
+Shelby, et al.          Expires September 5, 2019              [Page 18]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -1061,7 +1061,7 @@ Authors' Addresses
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 19]
+Shelby, et al.          Expires September 5, 2019              [Page 19]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
@@ -1091,12 +1091,12 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
    Bilhanan Silverajan (editor)
-   Tampere University of Technology
-   Korkeakoulunkatu 10
-   Tampere  FI-33720
+   Tampere University
+   Kalevantie 4
+   Tampere  FI-33100
    Finland
 
-   Email: bilhanan.silverajan@tut.fi
+   Email: bilhanan.silverajan@tuni.fi
 
 
 
@@ -1117,4 +1117,4 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
 
-Shelby, et al.          Expires September 3, 2019              [Page 20]
+Shelby, et al.          Expires September 5, 2019              [Page 20]
