@@ -83,8 +83,8 @@ table.header td, table#rfc\.headerblock td {
   line-height: 28px;
 }
 
-samp, tt, code, pre {
-  font: 15px Consolas, monospace;
+samp, tt, code, pre, span.tt {
+  font: 13.5px Consolas, monospace;
   font-size-adjust: none;
 }
 pre {
@@ -283,20 +283,21 @@ ul.toc li {
   <link href="#rfc.toc" rel="Contents">
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
 <link href="#rfc.section.2" rel="Chapter" title="2 Terminology">
-<link href="#rfc.section.3" rel="Chapter" title="3 Link Bindings">
-<link href="#rfc.section.3.1" rel="Chapter" title='3.1 The "bind" attribute and Binding Methods'>
-<link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 Polling">
-<link href="#rfc.section.3.1.2" rel="Chapter" title="3.1.2 Observe">
-<link href="#rfc.section.3.1.3" rel="Chapter" title="3.1.3 Push">
-<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Link Relation">
-<link href="#rfc.section.4" rel="Chapter" title="4 Binding and Resource Observation Attributes">
-<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Minimum Period (pmin)">
-<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Maximum Period (pmax)">
-<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Change Step (st)">
-<link href="#rfc.section.4.4" rel="Chapter" title="4.4 Greater Than (gt)">
-<link href="#rfc.section.4.5" rel="Chapter" title="4.5 Less Than (lt)">
-<link href="#rfc.section.4.6" rel="Chapter" title="4.6 Notification Band (band)">
-<link href="#rfc.section.4.7" rel="Chapter" title="4.7 Attribute Interactions">
+<link href="#rfc.section.3" rel="Chapter" title="3 Conditional Notification Attributes">
+<link href="#rfc.section.3.1" rel="Chapter" title="3.1 Attribute Definitions">
+<link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 Minimum Period (pmin)">
+<link href="#rfc.section.3.1.2" rel="Chapter" title="3.1.2 Maximum Period (pmax)">
+<link href="#rfc.section.3.1.3" rel="Chapter" title="3.1.3 Change Step (st)">
+<link href="#rfc.section.3.1.4" rel="Chapter" title="3.1.4 Greater Than (gt)">
+<link href="#rfc.section.3.1.5" rel="Chapter" title="3.1.5 Less Than (lt)">
+<link href="#rfc.section.3.1.6" rel="Chapter" title="3.1.6 Notification Band (band)">
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Server processing of Conditional Notification Atributes">
+<link href="#rfc.section.4" rel="Chapter" title="4 Link Bindings">
+<link href="#rfc.section.4.1" rel="Chapter" title='4.1 The "bind" attribute and Binding Methods'>
+<link href="#rfc.section.4.1.1" rel="Chapter" title="4.1.1 Polling">
+<link href="#rfc.section.4.1.2" rel="Chapter" title="4.1.2 Observe">
+<link href="#rfc.section.4.1.3" rel="Chapter" title="4.1.3 Push">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 Link Relation">
 <link href="#rfc.section.5" rel="Chapter" title="5 Binding Table">
 <link href="#rfc.section.6" rel="Chapter" title="6 Implementation Considerations">
 <link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations">
@@ -315,14 +316,14 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.11.1 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.20.1 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Shelby, Z., Koster, M., Groves, C., Zhu, J., and B. Silverajan, Ed." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-dynlink-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-10-22" />
-  <meta name="dct.abstract" content="For CoAP (RFC7252), Dynamic linking of state updates between resources, either on an endpoint or between endpoints, is defined with the concept of Link Bindings. This specification defines conditional observation attributes that work with Link Bindings or with CoAP Observe (RFC7641)." />
-  <meta name="description" content="For CoAP (RFC7252), Dynamic linking of state updates between resources, either on an endpoint or between endpoints, is defined with the concept of Link Bindings. This specification defines conditional observation attributes that work with Link Bindings or with CoAP Observe (RFC7641)." />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-03-02" />
+  <meta name="dct.abstract" content="This specification defines Link Bindings, which provide dynamic linking of state updates between resources, either on an endpoint or between endpoints, for systems using CoAP (RFC7252). This specification also defines Conditional Notification Attributes that work with Link Bindings or with CoAP Observe (RFC7641)." />
+  <meta name="description" content="This specification defines Link Bindings, which provide dynamic linking of state updates between resources, either on an endpoint or between endpoints, for systems using CoAP (RFC7252). This specification also defines Conditional Notification Attributes that work with Link Bindings or with CoAP Observe (RFC7641)." />
 
 </head>
 
@@ -344,7 +345,7 @@ ul.toc li {
 <td class="right">M. Koster</td>
 </tr>
 <tr>
-<td class="left">Expires: April 25, 2019</td>
+<td class="left">Expires: September 3, 2019</td>
 <td class="right">SmartThings</td>
 </tr>
 <tr>
@@ -373,7 +374,7 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">October 22, 2018</td>
+<td class="right">March 02, 2019</td>
 </tr>
 
     	
@@ -384,16 +385,16 @@ ul.toc li {
   <span class="filename">draft-ietf-core-dynlink-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>For CoAP (RFC7252), Dynamic linking of state updates between resources, either on an endpoint or between endpoints, is defined with the concept of Link Bindings. This specification defines conditional observation attributes that work with Link Bindings or with CoAP Observe (RFC7641).</p>
+<p>This specification defines Link Bindings, which provide dynamic linking of state updates between resources, either on an endpoint or between endpoints, for systems using CoAP (RFC7252). This specification also defines Conditional Notification Attributes that work with Link Bindings or with CoAP Observe (RFC7641).</p>
 <h1><a>Editor note</a></h1>
 <p>The git repository for the draft is found at https://github.com/core-wg/dynlink</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 25, 2019.</p>
+<p>This Internet-Draft will expire on September 3, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
-<p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
@@ -405,33 +406,35 @@ ul.toc li {
 </li>
 <li>2.   <a href="#rfc.section.2">Terminology</a>
 </li>
-<li>3.   <a href="#rfc.section.3">Link Bindings</a>
+<li>3.   <a href="#rfc.section.3">Conditional Notification Attributes</a>
 </li>
-<ul><li>3.1.   <a href="#rfc.section.3.1">The "bind" attribute and Binding Methods</a>
+<ul><li>3.1.   <a href="#rfc.section.3.1">Attribute Definitions</a>
 </li>
-<ul><li>3.1.1.   <a href="#rfc.section.3.1.1">Polling</a>
+<ul><li>3.1.1.   <a href="#rfc.section.3.1.1">Minimum Period (pmin)</a>
 </li>
-<li>3.1.2.   <a href="#rfc.section.3.1.2">Observe</a>
+<li>3.1.2.   <a href="#rfc.section.3.1.2">Maximum Period (pmax)</a>
 </li>
-<li>3.1.3.   <a href="#rfc.section.3.1.3">Push</a>
+<li>3.1.3.   <a href="#rfc.section.3.1.3">Change Step (st)</a>
 </li>
-</ul><li>3.2.   <a href="#rfc.section.3.2">Link Relation</a>
+<li>3.1.4.   <a href="#rfc.section.3.1.4">Greater Than (gt)</a>
 </li>
-</ul><li>4.   <a href="#rfc.section.4">Binding and Resource Observation Attributes</a>
+<li>3.1.5.   <a href="#rfc.section.3.1.5">Less Than (lt)</a>
 </li>
-<ul><li>4.1.   <a href="#rfc.section.4.1">Minimum Period (pmin)</a>
+<li>3.1.6.   <a href="#rfc.section.3.1.6">Notification Band (band)</a>
 </li>
-<li>4.2.   <a href="#rfc.section.4.2">Maximum Period (pmax)</a>
+</ul><li>3.2.   <a href="#rfc.section.3.2">Server processing of Conditional Notification Atributes</a>
 </li>
-<li>4.3.   <a href="#rfc.section.4.3">Change Step (st)</a>
+</ul><li>4.   <a href="#rfc.section.4">Link Bindings</a>
 </li>
-<li>4.4.   <a href="#rfc.section.4.4">Greater Than (gt)</a>
+<ul><li>4.1.   <a href="#rfc.section.4.1">The "bind" attribute and Binding Methods</a>
 </li>
-<li>4.5.   <a href="#rfc.section.4.5">Less Than (lt)</a>
+<ul><li>4.1.1.   <a href="#rfc.section.4.1.1">Polling</a>
 </li>
-<li>4.6.   <a href="#rfc.section.4.6">Notification Band (band)</a>
+<li>4.1.2.   <a href="#rfc.section.4.1.2">Observe</a>
 </li>
-<li>4.7.   <a href="#rfc.section.4.7">Attribute Interactions</a>
+<li>4.1.3.   <a href="#rfc.section.4.1.3">Push</a>
+</li>
+</ul><li>4.2.   <a href="#rfc.section.4.2">Link Relation</a>
 </li>
 </ul><li>5.   <a href="#rfc.section.5">Binding Table</a>
 </li>
@@ -473,7 +476,7 @@ ul.toc li {
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
 <p id="rfc.section.1.p.1">IETF Standards for machine to machine communication in constrained environments describe a REST protocol <a href="#RFC7252" class="xref">[RFC7252]</a> and a set of related information standards that may be used to represent machine data and machine metadata in REST interfaces. CoRE Link-format <a href="#RFC6690" class="xref">[RFC6690]</a> is a standard for doing Web Linking <a href="#RFC8288" class="xref">[RFC8288]</a> in constrained environments.</p>
-<p id="rfc.section.1.p.2">This specification introduces the concept of a Link Binding, which defines a new link relation type to create a dynamic link between resources over which state updates are conveyed. Specifically, a Link Binding is a unidirectional link for binding the states of source and destination resources together such that updates to one are sent over the link to the other. CoRE Link Format representations are used to configure, inspect, and maintain Link Bindings. This specification additionally defines a set of conditional Observe Attributes for use with Link Bindings and with the standalone CoRE Observe <a href="#RFC7641" class="xref">[RFC7641]</a> method.</p>
+<p id="rfc.section.1.p.2">This specification introduces the concept of a Link Binding, which defines a new link relation type to create a dynamic link between resources over which state updates are conveyed. Specifically, a Link Binding is a unidirectional link for binding the states of source and destination resources together such that updates to one are sent over the link to the other. CoRE Link Format representations are used to configure, inspect, and maintain Link Bindings. This specification additionally defines Conditional Notification Attributes for use with Link Bindings and with the CoRE Observe <a href="#RFC7641" class="xref">[RFC7641]</a> method.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -490,103 +493,20 @@ ul.toc li {
 <dd style="margin-left: 8">A resource value range that results in state sychronization.  The value range may be bounded by a minimum and maximum value or may be unbounded having either a minimum or maximum value.</dd>
 </dl>
 <h1 id="rfc.section.3">
-<a href="#rfc.section.3">3.</a> <a href="#bindings" id="bindings">Link Bindings</a>
+<a href="#rfc.section.3">3.</a> <a href="#binding_attributes" id="binding_attributes">Conditional Notification Attributes</a>
 </h1>
-<p id="rfc.section.3.p.1">In a M2M RESTful environment, endpoints may directly exchange the content of their resources to operate the distributed system. For example, a light switch may supply on-off control information that may be sent directly to a light resource for on-off control. Beforehand, a configuration phase is necessary to determine how the resources of the different endpoints are related to each other. This can be done either automatically using discovery mechanisms or by means of human intervention and a so-called commissioning tool. In this specification such an abstract relationship between two resources is defined, called a link Binding. The configuration phase necessitates the exchange of binding information so a format recognized by all CoRE endpoints is essential. This specification defines a format based on the CoRE Link-Format to represent binding information along with the rules to define a binding method which is a specialized relationship between two resources. The purpose of such a binding is to synchronize the content between a source resource and a destination resource. The destination resource MAY be a group resource if the authority component of the destination URI contains a group address (either a multicast address or a name that resolves to a multicast address). Since a binding is unidirectional, the binding entry defining a relationship is present only on one endpoint. The binding entry may be located either on the source or the destination endpoint depending on the binding method.</p>
 <h1 id="rfc.section.3.1">
-<a href="#rfc.section.3.1">3.1.</a> <a href="#binding_methods" id="binding_methods">The "bind" attribute and Binding Methods</a>
+<a href="#rfc.section.3.1">3.1.</a> <a href="#attribute-definitions" id="attribute-definitions">Attribute Definitions</a>
 </h1>
-<p id="rfc.section.3.1.p.1">A binding method defines the rules to generate the web-transfer exchanges that synchronize state between source and destination resources. By using REST methods content is sent from the source resource to the destination resource.</p>
-<p id="rfc.section.3.1.p.2">In order to use binding methods, this specification defines a special CoRE link attribute "bind". This is the identifier of a binding method which defines the rules to synchronize the destination resource. This attribute is mandatory.</p>
+<p id="rfc.section.3.1.p.1">This specification defines Conditional Notification Attributes, which provide for fine-grained control of notification and state synchronization when using CoRE Observe <a href="#RFC7641" class="xref">[RFC7641]</a> or Link Bindings. Conditional Notification Attributes define the conditions that trigger a notification.</p>
+<p id="rfc.section.3.1.p.2">When resource interfaces following this specification are made available over CoAP, the CoAP Observation mechanism <a href="#RFC7641" class="xref">[RFC7641]</a> MAY also be used to observe any changes in a resource, and receive asynchronous notifications as a result. A resource marked as Observable in its link description SHOULD support these Conditional Notification Attributes.</p>
+<p id="rfc.section.3.1.p.3">The set of parameters defined here allow a client to control how often a client is interested in receiving notifications and how much a resource value should change for the new representation to be interesting.</p>
+<p id="rfc.section.3.1.p.4">One or more Notification Attributes MAY be included as query parameters in an Observe request.</p>
+<p id="rfc.section.3.1.p.5">These attributes are defined below:</p>
 <div id="rfc.table.1"></div>
-<div id="bindattribute"></div>
-<table cellpadding="3" cellspacing="0" class="tt full center">
-<caption>The bind attribute</caption>
-<thead><tr>
-<th class="left">Attribute</th>
-<th class="left">Parameter</th>
-<th class="left">Value</th>
-</tr></thead>
-<tbody><tr>
-<td class="left">Binding method</td>
-<td class="left">bind</td>
-<td class="left">xsd:string</td>
-</tr></tbody>
-</table>
-<p id="rfc.section.3.1.p.3">The following table gives a summary of the binding methods defined in this specification.</p>
-<div id="rfc.table.2"></div>
-<div id="bindsummary"></div>
-<table cellpadding="3" cellspacing="0" class="tt full center">
-<caption>Binding Method Summary</caption>
-<thead><tr>
-<th class="left">Name</th>
-<th class="left">Identifier</th>
-<th class="left">Location</th>
-<th class="left">Method</th>
-</tr></thead>
-<tbody>
-<tr>
-<td class="left">Polling</td>
-<td class="left">poll</td>
-<td class="left">Destination</td>
-<td class="left">GET</td>
-</tr>
-<tr>
-<td class="left">Observe</td>
-<td class="left">obs</td>
-<td class="left">Destination</td>
-<td class="left">GET + Observe</td>
-</tr>
-<tr>
-<td class="left">Push</td>
-<td class="left">push</td>
-<td class="left">Source</td>
-<td class="left">PUT</td>
-</tr>
-</tbody>
-</table>
-<p id="rfc.section.3.1.p.4">The description of a binding method must define the following aspects:</p>
-<p></p>
-
-<dl>
-<dt>Identifier:</dt>
-<dd style="margin-left: 8">This is the value of the "bind" attribute used to identify the method.</dd>
-<dt>Location:</dt>
-<dd style="margin-left: 8">This information indicates whether the binding entry is stored on the source or on the destination endpoint.</dd>
-<dt>REST Method:</dt>
-<dd style="margin-left: 8">This is the REST method used in the Request/Response exchanges.</dd>
-<dt>Conditions:</dt>
-<dd style="margin-left: 8">A binding method definition must state how the condition attributes of the abstract binding definition are actually used in this specialized binding.</dd>
-</dl>
-<p id="rfc.section.3.1.p.6">The binding methods are described in more detail below.</p>
-<h1 id="rfc.section.3.1.1">
-<a href="#rfc.section.3.1.1">3.1.1.</a> <a href="#polling" id="polling">Polling</a>
-</h1>
-<p id="rfc.section.3.1.1.p.1">The Polling method consists of sending periodic GET requests from the destination endpoint to the source resource and copying the content to the destination resource. The binding entry for this method MUST be stored on the destination endpoint. The destination endpoint MUST ensure that the polling frequency does not exceed the limits defined by the pmin and pmax attributes of the binding entry. The copying process MAY filter out content from the GET requests using value-based conditions (e.g based on the Change Step, Less Than, Greater Than attributes).</p>
-<h1 id="rfc.section.3.1.2">
-<a href="#rfc.section.3.1.2">3.1.2.</a> <a href="#observe" id="observe">Observe</a>
-</h1>
-<p id="rfc.section.3.1.2.p.1">The Observe method creates an observation relationship between the destination endpoint and the source resource. On each notification the content from the source resource is copied to the destination resource. The creation of the observation relationship requires the CoAP Observation mechanism <a href="#RFC7641" class="xref">[RFC7641]</a> hence this method is only permitted when the resources are made available over CoAP. The binding entry for this method MUST be stored on the destination endpoint. The binding conditions are mapped as query string parameters (see <a href="#binding_attributes" class="xref">Section 4</a>).</p>
-<h1 id="rfc.section.3.1.3">
-<a href="#rfc.section.3.1.3">3.1.3.</a> <a href="#push" id="push">Push</a>
-</h1>
-<p id="rfc.section.3.1.3.p.1">When the Push method is assigned to a binding, the source endpoint sends PUT requests to the destination resource when the binding condition attributes are satisfied for the source resource. The source endpoint MUST only send a notification request if the binding conditions are met. The binding entry for this method MUST be stored on the source endpoint.</p>
-<h1 id="rfc.section.3.2">
-<a href="#rfc.section.3.2">3.2.</a> <a href="#relation_type" id="relation_type">Link Relation</a>
-</h1>
-<p id="rfc.section.3.2.p.1">Since Binding involves the creation of a link between two resources, Web Linking and the CoRE Link-Format are a natural way to represent binding information. This involves the creation of a new relation type, named &#8220;boundto&#8221;. In a Web link with this relation type, the target URI contains the location of the source resource and the context URI points to the destination resource.</p>
-<h1 id="rfc.section.4">
-<a href="#rfc.section.4">4.</a> <a href="#binding_attributes" id="binding_attributes">Binding and Resource Observation Attributes</a>
-</h1>
-<p id="rfc.section.4.p.1">In addition to "bind", this specification further defines Web link attributes allowing a fine-grained control of the type of state synchronization along with the conditions that trigger an update.</p>
-<p id="rfc.section.4.p.2">When resource interfaces following this specification are made available over CoAP, the CoAP Observation mechanism <a href="#RFC7641" class="xref">[RFC7641]</a> MAY also be used to observe any changes in a resource, and receive asynchronous notifications as a result. A resource using an interface description defined in this specification and marked as Observable in its link description SHOULD support these observation parameters.</p>
-<p id="rfc.section.4.p.3">In addition, the set of parameters are defined here allow a client to control how often a client is interested in receiving notifications and how much a resource value should change for the new representation to be interesting, as query parameters.</p>
-<p id="rfc.section.4.p.4">These query parameters MUST be treated as resources that are read using GET and updated using PUT, and MUST NOT be included in the Observe request. Multiple parameters MAY be updated at the same time by including the values in the query string of a PUT. Before being updated, these parameters have no default value.</p>
-<p id="rfc.section.4.p.5">These attributes are defined below:</p>
-<div id="rfc.table.3"></div>
 <div id="weblinkattributes"></div>
 <table cellpadding="3" cellspacing="0" class="tt full center">
-<caption>Binding Attributes Summary</caption>
+<caption>Conditional Notification Attributes</caption>
 <thead><tr>
 <th class="left">Attribute</th>
 <th class="left">Parameter</th>
@@ -596,12 +516,12 @@ ul.toc li {
 <tr>
 <td class="left">Minimum Period (s)</td>
 <td class="left">pmin</td>
-<td class="left">xsd:integer (&gt;0)</td>
+<td class="left">xsd:decimal (&gt;0)</td>
 </tr>
 <tr>
 <td class="left">Maximum Period (s)</td>
 <td class="left">pmax</td>
-<td class="left">xsd:integer (&gt;0)</td>
+<td class="left">xsd:decimal (&gt;0)</td>
 </tr>
 <tr>
 <td class="left">Change Step</td>
@@ -625,43 +545,50 @@ ul.toc li {
 </tr>
 </tbody>
 </table>
-<h1 id="rfc.section.4.1">
-<a href="#rfc.section.4.1">4.1.</a> <a href="#pmin" id="pmin">Minimum Period (pmin)</a>
+<p id="rfc.section.3.1.p.6">Conditional Notification Attributes SHOULD be evaluated on all potential notifications from a resource, whether resulting from an internal sampling process or from external update requests to the server.</p>
+<p id="rfc.section.3.1.p.7">Note: In this draft, we assume that there are finite quantization effects in the internal or external updates to the value of a resource; specifically, that a resource may be updated at any time with any valid value. We therefore avoid any continuous-time assumptions in the description of the Conditional Observe Attributes and instead use the phrase &#8220;sampled value&#8221; to refer to a member of a sequence of values that may be internally observed from the resource state over time.</p>
+<h1 id="rfc.section.3.1.1">
+<a href="#rfc.section.3.1.1">3.1.1.</a> <a href="#pmin" id="pmin">Minimum Period (pmin)</a>
 </h1>
-<p id="rfc.section.4.1.p.1">When present, the minimum period indicates the minimum time to wait (in seconds) before triggering a new state synchronization (even if it has changed). In the absence of this parameter, the minimum period is up to the synchronization initiator. The minimum period MUST be greater than zero otherwise the receiver MUST return a CoAP error code 4.00 &#8220;Bad Request&#8221; (or equivalent).</p>
-<h1 id="rfc.section.4.2">
-<a href="#rfc.section.4.2">4.2.</a> <a href="#pmax" id="pmax">Maximum Period (pmax)</a>
+<p id="rfc.section.3.1.1.p.1">When present, the minimum period indicates the minimum time, in seconds, between two consecutive notifications (whether or not the resource value has changed). In the absence of this parameter, the minimum period is up to the server. The minimum period MUST be greater than zero otherwise the receiver MUST return a CoAP error code 4.00 &#8220;Bad Request&#8221; (or equivalent).</p>
+<p id="rfc.section.3.1.1.p.2">A server MAY report the last sampled value that occured during the pmin interval, after the pmin interval expires.</p>
+<p id="rfc.section.3.1.1.p.3">Note: Due to finite quantization effects, the time between notifications may be greater than pmin even when the sampled value changes within the pmin interval. Pmin may or may not be used to drive the internal sampling process.</p>
+<h1 id="rfc.section.3.1.2">
+<a href="#rfc.section.3.1.2">3.1.2.</a> <a href="#pmax" id="pmax">Maximum Period (pmax)</a>
 </h1>
-<p id="rfc.section.4.2.p.1">When present, the maximum period indicates the maximum time in seconds between two consecutive state synchronizations (regardless if it has changed). In the absence of this parameter, the maximum period is up to the synchronization initiator. The maximum period MUST be greater than zero and MUST be greater than the minimum period parameter (if present) otherwise the receiver MUST return a CoAP error code 4.00 &#8220;Bad Request&#8221; (or equivalent).</p>
-<h1 id="rfc.section.4.3">
-<a href="#rfc.section.4.3">4.3.</a> <a href="#st" id="st">Change Step (st)</a>
+<p id="rfc.section.3.1.2.p.1">When present, the maximum period indicates the maximum time, in seconds, between two consecutive notifications (whether or not the resource value has changed). In the absence of this parameter, the maximum period is up to the server. The maximum period MUST be greater than zero and MUST be greater than the minimum period parameter (if present) otherwise the receiver MUST return a CoAP error code 4.00 &#8220;Bad Request&#8221; (or equivalent).</p>
+<h1 id="rfc.section.3.1.3">
+<a href="#rfc.section.3.1.3">3.1.3.</a> <a href="#st" id="st">Change Step (st)</a>
 </h1>
-<p id="rfc.section.4.3.p.1">When present, the change step indicates how much the value of a resource SHOULD change before triggering a new state synchronization (compared to the value of the previous synchronization). Upon reception of a query including the st attribute the current value (CurrVal) of the resource is set as the initial value (STinit). Once the resource value differs from the STinit value (i.e. CurrVal &gt;= STinit + ST or CurrVal &lt;= STint - ST) then a new state synchronization occurs. STinit is then set to the state synchronization value and new state synchronizations are based on a change step against this value. The change step MUST be greater than zero otherwise the receiver MUST return a CoAP error code 4.00 &#8220;Bad Request&#8221; (or equivalent).</p>
-<p id="rfc.section.4.3.p.2">The Change Step parameter can only be supported on resources with an atomic numeric value.</p>
-<p id="rfc.section.4.3.p.3">Note: Due to the state synchronization based update of STint it may result in that resource value received in two sequential state synchronizations differs by more than st.</p>
-<h1 id="rfc.section.4.4">
-<a href="#rfc.section.4.4">4.4.</a> <a href="#gt" id="gt">Greater Than (gt)</a>
+<p id="rfc.section.3.1.3.p.1">When present, the change step indicates how much the value of a resource SHOULD change before triggering a notification, compared to the value of the previous notification. Upon reception of a query including the st attribute, the most recently sampled value of the resource is reported, and then set as the last reported value (last_rep_v). When a subsequent sample or update of the resource value differs from the last reported value by an amount, positive or negative, greater than or equal to st, and the time for pmin has elapsed since the last notification, a notification is sent and the last reported value is updated to the value sent in the notification. The change step MUST be greater than zero otherwise the receiver MUST return a CoAP error code 4.00 &#8220;Bad Request&#8221; (or equivalent).</p>
+<p id="rfc.section.3.1.3.p.2">The Change Step parameter can only be supported on resources with a scalar numeric value.</p>
+<p id="rfc.section.3.1.3.p.3">Note: Due to sampling and other constraints, e.g. pmin, the resource value received in two sequential notifications may differ by more than st.</p>
+<h1 id="rfc.section.3.1.4">
+<a href="#rfc.section.3.1.4">3.1.4.</a> <a href="#gt" id="gt">Greater Than (gt)</a>
 </h1>
-<p id="rfc.section.4.4.p.1">When present, Greater Than indicates the upper limit value the resource value SHOULD cross before triggering a new state synchronization. State synchronization only occurs when the resource value exceeds the specified upper limit value. The actual resource value is used for the synchronization rather than the gt value. If the value continues to rise, no new state synchronizations are generated as a result of gt. If the value drops below the upper limit value and then exceeds the upper limit then a new state synchronization is generated.</p>
-<h1 id="rfc.section.4.5">
-<a href="#rfc.section.4.5">4.5.</a> <a href="#lt" id="lt">Less Than (lt)</a>
+<p id="rfc.section.3.1.4.p.1">When present, Greater Than indicates the upper limit value the sampled value SHOULD cross before triggering a notification. A notification is sent whenever the sampled value crosses the specified upper limit value, relative to the last reported value, and the time fpr pmin has elapsed since the last notification. The sampled value is sent in the notification. If the value continues to rise, no notifications are generated as a result of gt. If the value drops below the upper limit value then a notification is sent, subject again to the pmin time.</p>
+<p id="rfc.section.3.1.4.p.2">The Greater Than parameter can only be supported on resources with a scalar numeric value.</p>
+<h1 id="rfc.section.3.1.5">
+<a href="#rfc.section.3.1.5">3.1.5.</a> <a href="#lt" id="lt">Less Than (lt)</a>
 </h1>
-<p id="rfc.section.4.5.p.1">When present, Less Than indicates the lower limit value the resource value SHOULD cross before triggering a new state synchronization. State synchronization only occurs when the resource value is less than the specified lower limit value. The actual resource value is used for the synchronization rather than the lt value. If the value continues to fall no new state synchronizations are generated as a result of lt. If the value rises above the lower limit value and then drops below the lower limit then a new state synchronization is generated.</p>
-<h1 id="rfc.section.4.6">
-<a href="#rfc.section.4.6">4.6.</a> <a href="#band" id="band">Notification Band (band)</a>
+<p id="rfc.section.3.1.5.p.1">When present, Less Than indicates the lower limit value the resource value SHOULD cross before triggering a notification. A notification is sent when the samples value crosses the specified lower limit value, relative to the last reported value, and the time fpr pmin has elapsed since the last notification. The sampled value is sent in the notification. If the value continues to fall no notifications are generated as a result of lt. If the value rises above the lower limit value then a new notification is sent, subject to the pmin time..</p>
+<p id="rfc.section.3.1.5.p.2">The Less Than parameter can only be supported on resources with a scalar numeric value.</p>
+<h1 id="rfc.section.3.1.6">
+<a href="#rfc.section.3.1.6">3.1.6.</a> <a href="#band" id="band">Notification Band (band)</a>
 </h1>
-<p id="rfc.section.4.6.p.1">The notification band attribute allows a bounded or unbounded (based on a minimum or maximum) value range that may trigger multiple state synchronizations. This enables use cases where different ranges results in differing behaviour. For example: monitoring the temperature of machinery. Whilst the temperature is in the normal operating range only periodic observations are needed. However as the temperature moves to more abnormal ranges more frequent synchronization/reporting may be needed.</p>
-<p id="rfc.section.4.6.p.2">Without a notification band, a transition across a less than (lt), or greater than (gt) limit only generates one notification.  This means that it is not possible to describe a case where multiple notifications are sent so long as the limit is exceeded.</p>
-<p id="rfc.section.4.6.p.3">The band attribute works as a modifier to the behaviour of gt and lt. Therefore, if band is present in a query, gt, lt or both, MUST be included.</p>
-<p id="rfc.section.4.6.p.4">When band is present with the lt attribute, it defines the lower bound for the notification band (notification band minimum). State synchronization occurs when the resource value is equal to or above the notification band minimum. If lt is not present there is no minimum value for the band.</p>
-<p id="rfc.section.4.6.p.5">When band is present with the gt attribute, it defines the upper bound for the notification band (notification band maximum). State synchronization occurs when the resource value is equal to or below the notification band maximum. If gt is not present there is no maximum value for the band.</p>
-<p id="rfc.section.4.6.p.6">If band is present with both the gt and lt attributes, two kinds of signaling bands are specified.</p>
-<p id="rfc.section.4.6.p.7">If a band is specified in which the value of gt is less than that of lt, in-band signaling occurs. State synchronization occurs whenever the resource value is between the notification band minimum and maximum or is equal to the notification band minimum or maximum.</p>
-<p id="rfc.section.4.6.p.8">On the other hand if the band is specified in which the value of gt is greater than that of lt, out-of-band signaling occurs. State synchronization occurs whenever the resource value is outside the notification band minimum and maximum or is equal to the notification band minimum or maximum.</p>
-<h1 id="rfc.section.4.7">
-<a href="#rfc.section.4.7">4.7.</a> <a href="#attribute-interactions" id="attribute-interactions">Attribute Interactions</a>
+<p id="rfc.section.3.1.6.p.1">The notification band attribute allows a bounded or unbounded (based on a minimum or maximum) value range that may trigger multiple notifications. This enables use cases where different ranges results in differing behaviour. For example: monitoring the temperature of machinery. Whilst the temperature is in the normal operating range only periodic observations are needed. However as the temperature moves to more abnormal ranges more frequent synchronization/reporting may be needed.</p>
+<p id="rfc.section.3.1.6.p.2">Without a notification band, a transition across a less than (lt), or greater than (gt) limit only generates one notification.  This means that it is not possible to describe a case where multiple notifications are sent so long as the limit is exceeded.</p>
+<p id="rfc.section.3.1.6.p.3">The band attribute works as a modifier to the behaviour of gt and lt. Therefore, if band is present in a query, gt, lt or both, MUST be included.</p>
+<p id="rfc.section.3.1.6.p.4">When band is present with the lt attribute, it defines the lower bound for the notification band (notification band minimum). Notifications occur when the resource value is equal to or above the notification band minimum. If lt is not present there is no minimum value for the band.</p>
+<p id="rfc.section.3.1.6.p.5">When band is present with the gt attribute, it defines the upper bound for the notification band (notification band maximum). Notifications occur when the resource value is equal to or below the notification band maximum. If gt is not present there is no maximum value for the band.</p>
+<p id="rfc.section.3.1.6.p.6">If band is present with both the gt and lt attributes, notification occurs when the resource value is greater than or equal to gt or when the resource value is less than or equal to lt.</p>
+<p id="rfc.section.3.1.6.p.7">If a band is specified in which the value of gt is less than that of lt, in-band notification occurs. That is, notification occurs whenever the resource value is between the gt and lt values, including equal to gt or lt.</p>
+<p id="rfc.section.3.1.6.p.8">If the band is specified in which the value of gt is greater than that of lt, out-of-band notification occurs. That is, notification occurs when the resource value not between the gt and lt values, excluding equal to gt and lt.</p>
+<p id="rfc.section.3.1.6.p.9">The Notification Band parameter can only be supported on resources with a scalar numeric value.</p>
+<h1 id="rfc.section.3.2">
+<a href="#rfc.section.3.2">3.2.</a> <a href="#server-processing-of-conditional-notification-atributes" id="server-processing-of-conditional-notification-atributes">Server processing of Conditional Notification Atributes</a>
 </h1>
-<p id="rfc.section.4.7.p.1">Pmin, pmax, st, gt and lt may be present in the same query. Parameters are not defined at multiple prioritization levels. Instead, the server state machine generates a notification whenever any of the parameter conditions are met, after which it performs a reset on all the requested conditions. State synchronization also occurs only once even if there are multiple conditions being met at the same time. The reference code below illustrates how notifications are generated.</p>
+<p id="rfc.section.3.2.p.1">Pmin, pmax, st, gt and lt may be present in the same query. The server sends a notification whenever any of the parameter conditions are met, upon which it updates it&#8217;s last notification value and time to prepare for the next notification. Only one notification occurs when there are multiple conditions being met at the same time. The reference code below illustrates the logic to determine when a notification is to be sent.</p>
 <div id="rfc.figure.1"></div>
 <div id="figattrint"></div>
 <pre>
@@ -694,6 +621,95 @@ bool notifiable( Resource * r ) {
 }
 </pre>
 <p class="figure">Figure 1: Code logic for attribute interactions for observe notification</p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#bindings" id="bindings">Link Bindings</a>
+</h1>
+<p id="rfc.section.4.p.1">In a M2M RESTful environment, endpoints may directly exchange the content of their resources to operate the distributed system. For example, a light switch may supply on-off control information that may be sent directly to a light resource for on-off control. Beforehand, a configuration phase is necessary to determine how the resources of the different endpoints are related to each other. This can be done either automatically using discovery mechanisms or by means of human intervention and a so-called commissioning tool.</p>
+<p id="rfc.section.4.p.2">In this specification such an abstract relationship between two resources is defined, called a link Binding. The configuration phase necessitates the exchange of binding information, so a format recognized by all CoRE endpoints is essential. This specification defines a format based on the CoRE Link-Format to represent binding information along with the rules to define a binding method which is a specialized relationship between two resources.</p>
+<p id="rfc.section.4.p.3">The purpose of such a binding is to synchronize content updates between a source resource and a destination resource. The destination resource MAY be a group resource if the authority component of the destination URI contains a group address (either a multicast address or a name that resolves to a multicast address). Since a binding is unidirectional, the binding entry defining a relationship is present only on one endpoint. The binding entry may be located either on the source or the destination endpoint depending on the binding method.</p>
+<p id="rfc.section.4.p.4">Conditional Notification Attributes defined in <a href="#binding_attributes" class="xref">Section 3</a> can be used with Link Bindings in order to customize the notification behavior and timing.</p>
+<h1 id="rfc.section.4.1">
+<a href="#rfc.section.4.1">4.1.</a> <a href="#binding_methods" id="binding_methods">The "bind" attribute and Binding Methods</a>
+</h1>
+<p id="rfc.section.4.1.p.1">A binding method defines the rules to generate the network-transfer exchanges that synchronize state between source and destination resources. By using REST methods content is sent from the source resource to the destination resource.</p>
+<p id="rfc.section.4.1.p.2">This specification defines a new CoRE link attribute "bind". This is the identifier for a binding method which defines the rules to synchronize the destination resource. This attribute is mandatory.</p>
+<div id="rfc.table.2"></div>
+<div id="bindattribute"></div>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<caption>The bind attribute</caption>
+<thead><tr>
+<th class="left">Attribute</th>
+<th class="left">Parameter</th>
+<th class="left">Value</th>
+</tr></thead>
+<tbody><tr>
+<td class="left">Binding method</td>
+<td class="left">bind</td>
+<td class="left">xsd:string</td>
+</tr></tbody>
+</table>
+<p id="rfc.section.4.1.p.3">The following table gives a summary of the binding methods defined in this specification.</p>
+<div id="rfc.table.3"></div>
+<div id="bindsummary"></div>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+<caption>Binding Method Summary</caption>
+<thead><tr>
+<th class="left">Name</th>
+<th class="left">Identifier</th>
+<th class="left">Location</th>
+<th class="left">Method</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="left">Polling</td>
+<td class="left">poll</td>
+<td class="left">Destination</td>
+<td class="left">GET</td>
+</tr>
+<tr>
+<td class="left">Observe</td>
+<td class="left">obs</td>
+<td class="left">Destination</td>
+<td class="left">GET + Observe</td>
+</tr>
+<tr>
+<td class="left">Push</td>
+<td class="left">push</td>
+<td class="left">Source</td>
+<td class="left">PUT</td>
+</tr>
+</tbody>
+</table>
+<p id="rfc.section.4.1.p.4">The description of a binding method defines the following aspects:</p>
+<p></p>
+
+<dl>
+<dt>Identifier:</dt>
+<dd style="margin-left: 8">This is the value of the "bind" attribute used to identify the method.</dd>
+<dt>Location:</dt>
+<dd style="margin-left: 8">This information indicates whether the binding entry is stored on the source or on the destination endpoint.</dd>
+<dt>REST Method:</dt>
+<dd style="margin-left: 8">This is the REST method used in the Request/Response exchanges.</dd>
+<dt>Conditional Notification:</dt>
+<dd style="margin-left: 8">How Conditional Notification Attributes are used in the binding.</dd>
+</dl>
+<p id="rfc.section.4.1.p.6">The binding methods are described in more detail below.</p>
+<h1 id="rfc.section.4.1.1">
+<a href="#rfc.section.4.1.1">4.1.1.</a> <a href="#polling" id="polling">Polling</a>
+</h1>
+<p id="rfc.section.4.1.1.p.1">The Polling method consists of sending periodic GET requests from the destination endpoint to the source resource and copying the content to the destination resource. The binding entry for this method MUST be stored on the destination endpoint. The destination endpoint MUST ensure that the polling frequency does not exceed the limits defined by the pmin and pmax attributes of the binding entry. The copying process MAY filter out content from the GET requests using value-based conditions (e.g based on the Change Step, Less Than, Greater Than attributes).</p>
+<h1 id="rfc.section.4.1.2">
+<a href="#rfc.section.4.1.2">4.1.2.</a> <a href="#observe" id="observe">Observe</a>
+</h1>
+<p id="rfc.section.4.1.2.p.1">The Observe method creates an observation relationship between the destination endpoint and the source resource. On each notification the content from the source resource is copied to the destination resource. The creation of the observation relationship requires the CoAP Observation mechanism <a href="#RFC7641" class="xref">[RFC7641]</a> hence this method is only permitted when the resources are made available over CoAP. The binding entry for this method MUST be stored on the destination endpoint. The binding conditions are mapped as query parameters in the Observe request (see <a href="#binding_attributes" class="xref">Section 3</a>).</p>
+<h1 id="rfc.section.4.1.3">
+<a href="#rfc.section.4.1.3">4.1.3.</a> <a href="#push" id="push">Push</a>
+</h1>
+<p id="rfc.section.4.1.3.p.1">When the Push method is assigned to a binding, the source endpoint sends PUT requests to the destination resource when the Conditional Notification Attributes are satisfied for the source resource. The source endpoint SHOULD only send a notification request if any included Conditional Notification Attributes are met. The binding entry for this method MUST be stored on the source endpoint.</p>
+<h1 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#relation_type" id="relation_type">Link Relation</a>
+</h1>
+<p id="rfc.section.4.2.p.1">Since Binding involves the creation of a link between two resources, Web Linking and the CoRE Link-Format used to represent binding information. This involves the creation of a new relation type, &#8220;boundto&#8221;. In a Web link with this relation type, the target URI contains the location of the source resource and the context URI points to the destination resource.</p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#binding_table" id="binding_table">Binding Table</a>
 </h1>
@@ -802,11 +818,19 @@ EMail: matthieu.vial@schneider-electric.com
 <h1 id="rfc.section.11">
 <a href="#rfc.section.11">11.</a> <a href="#changelog" id="changelog">Changelog</a>
 </h1>
-<p id="rfc.section.11.p.1">draft-ietf-core-dynlink-07</p>
+<p id="rfc.section.11.p.1">draft-ietf-core-dynlink-08</p>
+<p></p>
+
+<ul>
+<li>Reorganize the draft to introduce Conditional Notification Attributes at the beginning</li>
+<li>Made pmin and pmax type xsd:decimal to accommodate fractional second timing</li>
+<li>updated the attribute descriptions. lt and gt notify on all crossings, both directions</li>
+</ul>
+<p id="rfc.section.11.p.3">draft-ietf-core-dynlink-07</p>
 <p></p>
 
 <ul><li>Added reference code to illustrate attribute interactions for observations</li></ul>
-<p id="rfc.section.11.p.3">draft-ietf-core-dynlink-06</p>
+<p id="rfc.section.11.p.5">draft-ietf-core-dynlink-06</p>
 <p></p>
 
 <ul>
@@ -815,21 +839,21 @@ EMail: matthieu.vial@schneider-electric.com
 <li>Implementation considerations introduced</li>
 <li>Additional text on security considerations</li>
 </ul>
-<p id="rfc.section.11.p.5">draft-ietf-core-dynlink-05</p>
+<p id="rfc.section.11.p.7">draft-ietf-core-dynlink-05</p>
 <p></p>
 
 <ul>
 <li>Addition of a band modifier for gt and lt, adapted from draft-groves-core-obsattr</li>
 <li>Removed statement prescribing gt MUST be greater than lt</li>
 </ul>
-<p id="rfc.section.11.p.7">draft-ietf-core-dynlink-03</p>
+<p id="rfc.section.11.p.9">draft-ietf-core-dynlink-03</p>
 <p></p>
 
 <ul>
 <li>General: Reverted to using &#8220;gt&#8221; and &#8220;lt&#8221; from &#8220;gth&#8221; and &#8220;lth&#8221; for this draft owing to concerns raised that the attributes are already used in LwM2M with the original names &#8220;gt&#8221; and &#8220;lt&#8221;.</li>
 <li>New author and editor added.</li>
 </ul>
-<p id="rfc.section.11.p.9">draft-ietf-core-dynlink-02</p>
+<p id="rfc.section.11.p.11">draft-ietf-core-dynlink-02</p>
 <p></p>
 
 <ul>
@@ -837,7 +861,7 @@ EMail: matthieu.vial@schneider-electric.com
 <li>Clause 6.1: Addressed the editor&#8217;s note by changing the link target attribute to &#8220;core.binding&#8221;.</li>
 <li>Added Appendix A for examples.</li>
 </ul>
-<p id="rfc.section.11.p.11">draft-ietf-core-dynlink-01</p>
+<p id="rfc.section.11.p.13">draft-ietf-core-dynlink-01</p>
 <p></p>
 
 <ul>
@@ -849,11 +873,11 @@ EMail: matthieu.vial@schneider-electric.com
 <li>Clause 4.1: Added a clarification that individual resources may be removed from the binding table.</li>
 <li>Clause 6: Formailised the IANA considerations.</li>
 </ul>
-<p id="rfc.section.11.p.13">draft-ietf-core-dynlink Initial Version 00:</p>
+<p id="rfc.section.11.p.15">draft-ietf-core-dynlink Initial Version 00:</p>
 <p></p>
 
 <ul><li>This is a copy of draft-groves-core-dynlink-00</li></ul>
-<p id="rfc.section.11.p.15">draft-groves-core-dynlink Draft Initial Version 00:</p>
+<p id="rfc.section.11.p.17">draft-groves-core-dynlink Draft Initial Version 00:</p>
 <p></p>
 
 <ul>
