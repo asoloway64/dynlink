@@ -291,7 +291,7 @@ ul.toc li {
 <link href="#rfc.section.3.1.4" rel="Chapter" title="3.1.4 Greater Than (gt)">
 <link href="#rfc.section.3.1.5" rel="Chapter" title="3.1.5 Less Than (lt)">
 <link href="#rfc.section.3.1.6" rel="Chapter" title="3.1.6 Notification Band (band)">
-<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Server processing of Conditional Notification Atributes">
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Server processing of Conditional Notification Attributes">
 <link href="#rfc.section.4" rel="Chapter" title="4 Link Bindings">
 <link href="#rfc.section.4.1" rel="Chapter" title='4.1 The "bind" attribute and Binding Methods'>
 <link href="#rfc.section.4.1.1" rel="Chapter" title="4.1.1 Polling">
@@ -422,7 +422,7 @@ ul.toc li {
 </li>
 <li>3.1.6.   <a href="#rfc.section.3.1.6">Notification Band (band)</a>
 </li>
-</ul><li>3.2.   <a href="#rfc.section.3.2">Server processing of Conditional Notification Atributes</a>
+</ul><li>3.2.   <a href="#rfc.section.3.2">Server processing of Conditional Notification Attributes</a>
 </li>
 </ul><li>4.   <a href="#rfc.section.4">Link Bindings</a>
 </li>
@@ -498,7 +498,7 @@ ul.toc li {
 <h1 id="rfc.section.3.1">
 <a href="#rfc.section.3.1">3.1.</a> <a href="#attribute-definitions" id="attribute-definitions">Attribute Definitions</a>
 </h1>
-<p id="rfc.section.3.1.p.1">This specification defines Conditional Notification Attributes, which provide for fine-grained control of notification and state synchronization when using CoRE Observe <a href="#RFC7641" class="xref">[RFC7641]</a> or Link Bindings. Conditional Notification Attributes define the conditions that trigger a notification.</p>
+<p id="rfc.section.3.1.p.1">This specification defines Conditional Notification Attributes, which provide for fine-grained control of notification and state synchronization when using CoRE Observe <a href="#RFC7641" class="xref">[RFC7641]</a> or Link Bindings (see <a href="#bindings" class="xref">Section 4</a>). Conditional Notification Attributes define the conditions that trigger a notification.</p>
 <p id="rfc.section.3.1.p.2">When resource interfaces following this specification are made available over CoAP, the CoAP Observation mechanism <a href="#RFC7641" class="xref">[RFC7641]</a> MAY also be used to observe any changes in a resource, and receive asynchronous notifications as a result. A resource marked as Observable in its link description SHOULD support these Conditional Notification Attributes.</p>
 <p id="rfc.section.3.1.p.3">The set of parameters defined here allow a client to control how often a client is interested in receiving notifications and how much a resource value should change for the new representation to be interesting.</p>
 <p id="rfc.section.3.1.p.4">One or more Notification Attributes MAY be included as query parameters in an Observe request.</p>
@@ -545,8 +545,8 @@ ul.toc li {
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.3.1.p.6">Conditional Notification Attributes SHOULD be evaluated on all potential notifications from a resource, whether resulting from an internal sampling process or from external update requests to the server.</p>
-<p id="rfc.section.3.1.p.7">Note: In this draft, we assume that there are finite quantization effects in the internal or external updates to the value of a resource; specifically, that a resource may be updated at any time with any valid value. We therefore avoid any continuous-time assumptions in the description of the Conditional Observe Attributes and instead use the phrase &#8220;sampled value&#8221; to refer to a member of a sequence of values that may be internally observed from the resource state over time.</p>
+<p id="rfc.section.3.1.p.6">Conditional Notification Attributes SHOULD be evaluated on all potential notifications from a resource, whether resulting from an internal server-driven sampling process or from external update requests to the server.</p>
+<p id="rfc.section.3.1.p.7">Note: In this draft, we assume that there are finite quantization effects in the internal or external updates to the value of a resource; specifically, that a resource may be updated at any time with any valid value. We therefore avoid any continuous-time assumptions in the description of the Conditional Notification Attributes and instead use the phrase &#8220;sampled value&#8221; to refer to a member of a sequence of values that may be internally observed from the resource state over time.</p>
 <h1 id="rfc.section.3.1.1">
 <a href="#rfc.section.3.1.1">3.1.1.</a> <a href="#pmin" id="pmin">Minimum Period (pmin)</a>
 </h1>
@@ -586,9 +586,9 @@ ul.toc li {
 <p id="rfc.section.3.1.6.p.8">If the band is specified in which the value of gt is greater than that of lt, out-of-band notification occurs. That is, notification occurs when the resource value not between the gt and lt values, excluding equal to gt and lt.</p>
 <p id="rfc.section.3.1.6.p.9">The Notification Band parameter can only be supported on resources with a scalar numeric value.</p>
 <h1 id="rfc.section.3.2">
-<a href="#rfc.section.3.2">3.2.</a> <a href="#server-processing-of-conditional-notification-atributes" id="server-processing-of-conditional-notification-atributes">Server processing of Conditional Notification Atributes</a>
+<a href="#rfc.section.3.2">3.2.</a> <a href="#server-processing-of-conditional-notification-attributes" id="server-processing-of-conditional-notification-attributes">Server processing of Conditional Notification Attributes</a>
 </h1>
-<p id="rfc.section.3.2.p.1">Pmin, pmax, st, gt and lt may be present in the same query. The server sends a notification whenever any of the parameter conditions are met, upon which it updates it&#8217;s last notification value and time to prepare for the next notification. Only one notification occurs when there are multiple conditions being met at the same time. The reference code below illustrates the logic to determine when a notification is to be sent.</p>
+<p id="rfc.section.3.2.p.1">Pmin, pmax, st, gt, lt and band may be present in the same query. Howver, they are not defined at multiple prioritization levels. The server sends a notification whenever any of the parameter conditions are met, upon which it updates its last notification value and time to prepare for the next notification. Only one notification occurs when there are multiple conditions being met at the same time. The reference code below illustrates the logic to determine when a notification is to be sent.</p>
 <div id="rfc.figure.1"></div>
 <div id="figattrint"></div>
 <pre>
@@ -620,12 +620,12 @@ bool notifiable( Resource * r ) {
   );
 }
 </pre>
-<p class="figure">Figure 1: Code logic for attribute interactions for observe notification</p>
+<p class="figure">Figure 1: Code logic for conditional notification attribute interactions</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#bindings" id="bindings">Link Bindings</a>
 </h1>
 <p id="rfc.section.4.p.1">In a M2M RESTful environment, endpoints may directly exchange the content of their resources to operate the distributed system. For example, a light switch may supply on-off control information that may be sent directly to a light resource for on-off control. Beforehand, a configuration phase is necessary to determine how the resources of the different endpoints are related to each other. This can be done either automatically using discovery mechanisms or by means of human intervention and a so-called commissioning tool.</p>
-<p id="rfc.section.4.p.2">In this specification such an abstract relationship between two resources is defined, called a link Binding. The configuration phase necessitates the exchange of binding information, so a format recognized by all CoRE endpoints is essential. This specification defines a format based on the CoRE Link-Format to represent binding information along with the rules to define a binding method which is a specialized relationship between two resources.</p>
+<p id="rfc.section.4.p.2">In this specification such an abstract relationship between two resources is defined, called a Link Binding. The configuration phase necessitates the exchange of binding information, so a format recognized by all CoRE endpoints is essential. This specification defines a format based on the CoRE Link-Format to represent binding information along with the rules to define a binding method which is a specialized relationship between two resources.</p>
 <p id="rfc.section.4.p.3">The purpose of such a binding is to synchronize content updates between a source resource and a destination resource. The destination resource MAY be a group resource if the authority component of the destination URI contains a group address (either a multicast address or a name that resolves to a multicast address). Since a binding is unidirectional, the binding entry defining a relationship is present only on one endpoint. The binding entry may be located either on the source or the destination endpoint depending on the binding method.</p>
 <p id="rfc.section.4.p.4">Conditional Notification Attributes defined in <a href="#binding_attributes" class="xref">Section 3</a> can be used with Link Bindings in order to customize the notification behavior and timing.</p>
 <h1 id="rfc.section.4.1">
@@ -760,11 +760,11 @@ Res: 2.04 Changed
 </h1>
 <p id="rfc.section.6.p.1">When using multiple resource bindings (e.g. multiple Observations of resource) with different bands, consideration should be given to the resolution of the resource value when setting sequential bands. For example: Given BandA (Abmn=10, Bbmx=20) and BandB (Bbmn=21, Bbmx=30). If the resource value returns an integer then notifications for values between and inclusive of 10 and 30 will be triggered. Whereas if the resolution is to one decimal point (0.1) then notifications for values 20.1 to 20.9 will not be triggered.</p>
 <p id="rfc.section.6.p.2">The use of the notification band minimum and maximum allow for a synchronization whenever a change in the resource value occurs. Theoretically this could occur in-line with the server internal sample period for the determining the resource value. Implementors SHOULD consider the resolution needed before updating the resource, e.g. updating the resource when a temperature sensor value changes by 0.001 degree versus 1 degree.</p>
-<p id="rfc.section.6.p.3">The initiation of a link binding can be delegated from a client to a link state machine implementation, which can be an embedded client or a configuration tool. Implementation considerations have to be given to how to monitor transactions made by the configuration tool with regards to link bindings, as well as any errors that may arise with establishing link bindings as well as with established link bindings.</p>
+<p id="rfc.section.6.p.3">The initiation of a Link Binding can be delegated from a client to a link state machine implementation, which can be an embedded client or a configuration tool. Implementation considerations have to be given to how to monitor transactions made by the configuration tool with regards to Link Bindings, as well as any errors that may arise with establishing Link Bindings in addition to established Link Bindings.</p>
 <h1 id="rfc.section.7">
 <a href="#rfc.section.7">7.</a> <a href="#Security" id="Security">Security Considerations</a>
 </h1>
-<p id="rfc.section.7.p.1">Consideration has to be given to what kinds of security credentials the state machine of a configuration tool or an embedded client needs to be configured with, and what kinds of access control lists client implementations should possess, so that transactions on creating link bindings and handling error conditions can be processed by the state machine.</p>
+<p id="rfc.section.7.p.1">Consideration has to be given to what kinds of security credentials the state machine of a configuration tool or an embedded client needs to be configured with, and what kinds of access control lists client implementations should possess, so that transactions on creating Link Bindings and handling error conditions can be processed by the state machine.</p>
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
