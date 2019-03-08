@@ -96,7 +96,7 @@ Table of Contents
    6.  Implementation Considerations . . . . . . . . . . . . . . . .  12
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  13
-     8.1.  Interface Description . . . . . . . . . . . . . . . . . .  13
+     8.1.  Resource Type value 'core.bnd'  . . . . . . . . . . . . .  13
      8.2.  Link Relation Type  . . . . . . . . . . . . . . . . . . .  13
    9.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  14
    10. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  14
@@ -586,30 +586,30 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 5.  Binding Table
 
-   The Binding table is a special resource that gives access to the
-   bindings on a endpoint.  This section defines a REST interface for
-   Binding table resources.  The Binding table resource MUST support the
-   Binding interface defined below.  The interface supports the link-
-   format type.
+   The Binding Table is a special resource that describes the bindings
+   on an endpoint.  An endpoint offering a representation of the Binding
+   Table resource SHOULD indicate its presence and enable its discovery
+   by advertising a link at "/.well-known/core" [RFC6690].  If so, the
+   Binding Table resource MUST be discoverable by using the Resource
+   Type (rt) 'core.bnd'.
 
-   The if= column defines the Interface Description (if=) attribute
-   value to be used in the CoRE Link Format for a resource conforming to
-   that interface.  When this value appears in the if= attribute of a
-   link, the resource MUST support the corresponding REST interface
-   described in this section.  The resource MAY support additional
-   functionality, which is out of scope for this specification.
-   Although this interface description is intended to be used with the
-   CoRE Link Format, it is applicable for use in any REST interface
-   definition.
+   The Methods column defines the REST methods supported by the Binding
+   Table, which are described in more detail below.
 
-   The Methods column defines the REST methods supported by the
-   interface, which are described in more detail below.
+         +---------------+----------+----------+----------------+
+         | Resource      | rt=      | Methods  | Content-Format |
+         +---------------+----------+----------+----------------+
+         | Binding Table | core.bnd | GET, PUT | link-format    |
+         +---------------+----------+----------+----------------+
 
+                    Table 4: Binding Table Description
 
-
-
-
-
+   The REST methods GET and PUT are used to manipulate a Binding Table.
+   A GET request simply returns the current state of a Binding Table.  A
+   request with a PUT method and a content format of application/link-
+   format is used to clear the bindings to the table or replaces its
+   entire contents.  All links in the payload of a PUT rquest MUST have
+   a relation type "boundto".
 
 
 
@@ -618,26 +618,24 @@ Shelby, et al.          Expires September 5, 2019              [Page 11]
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 
-      +-----------+----------+-------------------+-----------------+
-      | Interface | if=      | Methods           | Content-Formats |
-      +-----------+----------+-------------------+-----------------+
-      | Binding   | core.bnd | GET, POST, DELETE | link-format     |
-      +-----------+----------+-------------------+-----------------+
+   (Editor's Note: Usage of the PATCH method for fine-grained addition
+   and removal of individual bindings is under study.)
 
-                  Table 4: Binding Interface Description
+   The following example shows requests for discovering, retrieving and
+   replacing bindings in a binding table.
 
-   The Binding interface is used to manipulate a binding table.  A
-   request with a POST method and a content format of application/link-
-   format simply appends new bindings to the table.  All links in the
-   payload MUST have a relation type "boundto".  A GET request simply
-   returns the current state of a binding table whereas a DELETE request
-   empties the table.  Individual entries may be deleted from the table
-   by specifying the resource path in a DELETE request.
+   Req: GET /.well-known/core?rt=core.bnd (application/link-format)
+   Res: 2.05 Content (application/link-format)
+   </bnd/>;rt=core.bnd;ct=40
 
-   The following example shows requests for adding, retrieving and
-   deleting bindings in a binding table.
+   Req: GET /bnd/
+   Res: 2.05 Content (application/link-format)
+   <coap://sensor.example.com/a/switch1/>;
+           rel=boundto;bind=obs;anchor=/a/fan,;bind="obs",
+   <coap://sensor.example.com/a/switch2/>;
+           rel=boundto;bind=obs;anchor=/a/light;bind="obs"
 
-   Req: POST /bnd/ (Content-Format: application/link-format)
+   Req: PUT /bnd/ (Content-Format: application/link-format)
    <coap://sensor.example.com/s/light>;
      rel="boundto";anchor="/a/light";bind="obs";pmin="10";pmax="60"
    Res: 2.04 Changed
@@ -647,13 +645,7 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
    <coap://sensor.example.com/s/light>;
      rel="boundto";anchor="/a/light";bind="obs";pmin="10";pmax="60"
 
-   Req: DELETE /bnd/a/light
-   Res: 2.04 Changed
-
-   Req: DELETE /bnd/
-   Res: 2.04 Changed
-
-                    Figure 2: Binding Interface Example
+                      Figure 2: Binding Table Example
 
 6.  Implementation Considerations
 
@@ -666,14 +658,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
    if the resolution is to one decimal point (0.1) then notifications
    for values 20.1 to 20.9 will not be triggered.
 
-
-
-
-Shelby, et al.          Expires September 5, 2019              [Page 12]
-
-Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
-
-
    The use of the notification band minimum and maximum allow for a
    synchronization whenever a change in the resource value occurs.
    Theoretically this could occur in-line with the server internal
@@ -681,6 +665,14 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
    SHOULD consider the resolution needed before updating the resource,
    e.g. updating the resource when a temperature sensor value changes by
    0.001 degree versus 1 degree.
+
+
+
+
+Shelby, et al.          Expires September 5, 2019              [Page 12]
+
+Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
+
 
    The initiation of a Link Binding can be delegated from a client to a
    link state machine implementation, which can be an embedded client or
@@ -700,17 +692,18 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
 8.  IANA Considerations
 
-8.1.  Interface Description
+8.1.  Resource Type value 'core.bnd'
 
-   The specification registers the "binding" CoRE interface description
-   link target attribute value as per [RFC6690].
+   This specification registers a new Resource Type Link Target
+   Attribute 'core.bnd' in the Resource Type (rt=) registry established
+   as per [RFC6690].
 
    Attribute Value:  core.bnd
 
-   Description: The binding interface is used to manipulate a binding
-   table which describes the link bindings between source and
-   destination resources for the purposes of synchronizing their
-   content.
+   Description: See Section 5.  This attribute value is used to discover
+   the resource representing a binding table, which describes the link
+   bindings between source and destination resources for the purposes of
+   synchronizing their content.
 
    Reference: This specification.  Note to RFC editor: please insert the
    RFC of this specification.
@@ -722,6 +715,13 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
    This specification registers the new "boundto" link relation type as
    per [RFC8288].
 
+   Relation Name:  boundto
+
+   Description:  The purpose of a boundto relation type is to indicate
+      that there is a binding between a source resource and a
+      destination resource for the purposes of synchronizing their
+      content.
+
 
 
 
@@ -729,13 +729,6 @@ Shelby, et al.          Expires September 5, 2019              [Page 13]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
-
-   Relation Name:  boundto
-
-   Description:  The purpose of a boundto relation type is to indicate
-      that there is a binding between a source resource and a
-      destination resource for the purposes of synchronizing their
-      content.
 
    Reference:  This specification.  Note to RFC editor: please insert
       the RFC of this specification.
@@ -778,6 +771,13 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
    o  updated the attribute descriptions. lt and gt notify on all
       crossings, both directions
 
+   draft-ietf-core-dynlink-07
+
+   o  Added reference code to illustrate attribute interactions for
+      observations
+
+   draft-ietf-core-dynlink-06
+
 
 
 
@@ -785,13 +785,6 @@ Shelby, et al.          Expires September 5, 2019              [Page 14]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
-
-   draft-ietf-core-dynlink-07
-
-   o  Added reference code to illustrate attribute interactions for
-      observations
-
-   draft-ietf-core-dynlink-06
 
    o  Document restructure and refactoring into three main sections
 
@@ -834,6 +827,13 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
       describe the process of synchronization between destination and
       source resources.
 
+   o  General: The document has been restructured the make the
+      information flow better.
+
+   o  Clause 3.1: The descriptions of the binding attributes have been
+      updated to clarify their usage.
+
+
 
 
 
@@ -841,12 +841,6 @@ Shelby, et al.          Expires September 5, 2019              [Page 15]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
-
-   o  General: The document has been restructured the make the
-      information flow better.
-
-   o  Clause 3.1: The descriptions of the binding attributes have been
-      updated to clarify their usage.
 
    o  Clause 3.1: A new clause has been added to discuss the
       interactions between the resources.
@@ -888,6 +882,12 @@ Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
+   [RFC8288]  Nottingham, M., "Web Linking", RFC 8288,
+              DOI 10.17487/RFC8288, October 2017,
+              <https://www.rfc-editor.org/info/rfc8288>.
+
+
+
 
 
 
@@ -897,10 +897,6 @@ Shelby, et al.          Expires September 5, 2019              [Page 16]
 
 Internet-Draft      Dynamic Resource Linking for CoRE         March 2019
 
-
-   [RFC8288]  Nottingham, M., "Web Linking", RFC 8288,
-              DOI 10.17487/RFC8288, October 2017,
-              <https://www.rfc-editor.org/info/rfc8288>.
 
 12.2.  Informative References
 
@@ -923,6 +919,10 @@ Appendix A.  Examples
    the header field.
 
 A.1.  Greater Than (gt) example
+
+
+
+
 
 
 

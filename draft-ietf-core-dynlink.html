@@ -302,7 +302,7 @@ ul.toc li {
 <link href="#rfc.section.6" rel="Chapter" title="6 Implementation Considerations">
 <link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations">
 <link href="#rfc.section.8" rel="Chapter" title="8 IANA Considerations">
-<link href="#rfc.section.8.1" rel="Chapter" title="8.1 Interface Description">
+<link href="#rfc.section.8.1" rel="Chapter" title="8.1 Resource Type value &#8216;core.bnd&#8217;">
 <link href="#rfc.section.8.2" rel="Chapter" title="8.2 Link Relation Type">
 <link href="#rfc.section.9" rel="Chapter" title="9 Acknowledgements">
 <link href="#rfc.section.10" rel="Chapter" title="10 Contributors">
@@ -316,7 +316,7 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.20.1 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.21.0 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Shelby, Z., Koster, M., Groves, C., Zhu, J., and B. Silverajan, Ed." />
@@ -444,7 +444,7 @@ ul.toc li {
 </li>
 <li>8.   <a href="#rfc.section.8">IANA Considerations</a>
 </li>
-<ul><li>8.1.   <a href="#rfc.section.8.1">Interface Description</a>
+<ul><li>8.1.   <a href="#rfc.section.8.1">Resource Type value &#8216;core.bnd&#8217;</a>
 </li>
 <li>8.2.   <a href="#rfc.section.8.2">Link Relation Type</a>
 </li>
@@ -713,32 +713,43 @@ bool notifiable( Resource * r ) {
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#binding_table" id="binding_table">Binding Table</a>
 </h1>
-<p id="rfc.section.5.p.1">The Binding table is a special resource that gives access to the bindings on a endpoint. This section defines a REST interface for Binding table resources. The Binding table resource MUST support the Binding interface defined below. The interface supports the link-format type.</p>
-<p id="rfc.section.5.p.2">The if= column defines the Interface Description (if=) attribute value to be used in the CoRE Link Format for a resource conforming to that interface. When this value appears in the if= attribute of a link, the resource MUST support the corresponding REST interface described in this section. The resource MAY support additional functionality, which is out of scope for this specification. Although this interface description is intended to be used with the CoRE Link Format, it is applicable for use in any REST interface definition.</p>
-<p id="rfc.section.5.p.3">The Methods column defines the REST methods supported by the interface, which are described in more detail below.</p>
+<p id="rfc.section.5.p.1">The Binding Table is a special resource that describes the bindings on an endpoint. An endpoint offering a representation of the Binding Table resource SHOULD indicate its presence and enable its discovery by advertising a link at &#8220;/.well-known/core&#8221; <a href="#RFC6690" class="xref">[RFC6690]</a>. If so, the Binding Table resource MUST be discoverable by using the Resource Type (rt) &#8216;core.bnd&#8217;.</p>
+<p id="rfc.section.5.p.2">The Methods column defines the REST methods supported by the Binding Table, which are described in more detail below.</p>
 <div id="rfc.table.4"></div>
 <div id="intdesc"></div>
 <table cellpadding="3" cellspacing="0" class="tt full center">
-<caption>Binding Interface Description</caption>
+<caption>Binding Table Description</caption>
 <thead><tr>
-<th class="left">Interface</th>
-<th class="left">if=</th>
+<th class="left">Resource</th>
+<th class="left">rt=</th>
 <th class="left">Methods</th>
-<th class="left">Content-Formats</th>
+<th class="left">Content-Format</th>
 </tr></thead>
 <tbody><tr>
-<td class="left">Binding</td>
+<td class="left">Binding Table</td>
 <td class="left">core.bnd</td>
-<td class="left">GET, POST, DELETE</td>
+<td class="left">GET, PUT</td>
 <td class="left">link-format</td>
 </tr></tbody>
 </table>
-<p id="rfc.section.5.p.4">The Binding interface is used to manipulate a binding table. A request with a POST method and a content format of application/link-format simply appends new bindings to the table. All links in the payload MUST have a relation type "boundto". A GET request simply returns the current state of a binding table whereas a DELETE request empties the table. Individual entries may be deleted from the table by specifying the resource path in a DELETE request.</p>
-<p id="rfc.section.5.p.5">The following example shows requests for adding, retrieving and deleting bindings in a binding table.</p>
+<p id="rfc.section.5.p.3">The REST methods GET and PUT are used to manipulate a Binding Table. A GET request simply returns the current state of a Binding Table. A request with a PUT method and a content format of application/link-format is used to clear the bindings to the table or replaces its entire contents. All links in the payload of a PUT rquest MUST have a relation type "boundto".</p>
+<p id="rfc.section.5.p.4">(Editor&#8217;s Note: Usage of the PATCH method for fine-grained addition and removal of individual bindings is under study.)</p>
+<p id="rfc.section.5.p.5">The following example shows requests for discovering, retrieving and replacing bindings in a binding table.</p>
 <div id="rfc.figure.2"></div>
 <div id="figbindexp"></div>
 <pre>
-Req: POST /bnd/ (Content-Format: application/link-format)
+Req: GET /.well-known/core?rt=core.bnd (application/link-format)
+Res: 2.05 Content (application/link-format)
+&lt;/bnd/&gt;;rt=core.bnd;ct=40
+
+Req: GET /bnd/
+Res: 2.05 Content (application/link-format)
+&lt;coap://sensor.example.com/a/switch1/&gt;;
+        rel=boundto;bind=obs;anchor=/a/fan,;bind="obs",
+&lt;coap://sensor.example.com/a/switch2/&gt;;
+        rel=boundto;bind=obs;anchor=/a/light;bind="obs"
+
+Req: PUT /bnd/ (Content-Format: application/link-format)
 &lt;coap://sensor.example.com/s/light&gt;;
   rel="boundto";anchor="/a/light";bind="obs";pmin="10";pmax="60"
 Res: 2.04 Changed 
@@ -747,14 +758,8 @@ Req: GET /bnd/
 Res: 2.05 Content (application/link-format)
 &lt;coap://sensor.example.com/s/light&gt;;
   rel="boundto";anchor="/a/light";bind="obs";pmin="10";pmax="60"
-
-Req: DELETE /bnd/a/light
-Res: 2.04 Changed  
-  
-Req: DELETE /bnd/
-Res: 2.04 Changed
 </pre>
-<p class="figure">Figure 2: Binding Interface Example</p>
+<p class="figure">Figure 2: Binding Table Example</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#Implementation" id="Implementation">Implementation Considerations</a>
 </h1>
@@ -769,16 +774,16 @@ Res: 2.04 Changed
 <a href="#rfc.section.8">8.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
 <h1 id="rfc.section.8.1">
-<a href="#rfc.section.8.1">8.1.</a> <a href="#interface-description" id="interface-description">Interface Description</a>
+<a href="#rfc.section.8.1">8.1.</a> <a href="#resource-type-value-corebnd" id="resource-type-value-corebnd">Resource Type value &#8216;core.bnd&#8217;</a>
 </h1>
-<p id="rfc.section.8.1.p.1">The specification registers the &#8220;binding&#8221; CoRE interface description link target attribute value as per <a href="#RFC6690" class="xref">[RFC6690]</a>.</p>
+<p id="rfc.section.8.1.p.1">This specification registers a new Resource Type Link Target Attribute &#8216;core.bnd&#8217; in the Resource Type (rt=) registry established as per <a href="#RFC6690" class="xref">[RFC6690]</a>.</p>
 <p></p>
 
 <dl>
 <dt>Attribute Value:</dt>
 <dd style="margin-left: 8">core.bnd</dd>
 </dl>
-<p id="rfc.section.8.1.p.3">Description: The binding interface is used to manipulate a binding table which describes the link bindings between source and destination resources for the purposes of synchronizing their content.</p>
+<p id="rfc.section.8.1.p.3">Description: See <a href="#binding_table" class="xref">Section 5</a>. This attribute value is used to discover the resource representing a binding table, which describes the link bindings between source and destination resources for the purposes of synchronizing their content.</p>
 <p id="rfc.section.8.1.p.4">Reference: This specification. Note to RFC editor: please insert the RFC of this specification.</p>
 <p id="rfc.section.8.1.p.5">Notes: None</p>
 <h1 id="rfc.section.8.2">
