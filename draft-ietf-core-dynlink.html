@@ -316,7 +316,7 @@ ul.toc li {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.21.0 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.22.3 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Shelby, Z., Koster, M., Groves, C., Zhu, J., and B. Silverajan, Ed." />
@@ -751,13 +751,13 @@ Res: 2.05 Content (application/link-format)
 
 Req: PUT /bnd/ (Content-Format: application/link-format)
 &lt;coap://sensor.example.com/s/light&gt;;
-  rel="boundto";anchor="/a/light";bind="obs";pmin="10";pmax="60"
+  rel="boundto";anchor="/a/light";bind="obs";pmin=10;pmax=60
 Res: 2.04 Changed 
 
 Req: GET /bnd/
 Res: 2.05 Content (application/link-format)
 &lt;coap://sensor.example.com/s/light&gt;;
-  rel="boundto";anchor="/a/light";bind="obs";pmin="10";pmax="60"
+  rel="boundto";anchor="/a/light";bind="obs";pmin=10;pmax=60
 </pre>
 <p class="figure">Figure 2: Binding Table Example</p>
 <h1 id="rfc.section.6">
@@ -981,7 +981,7 @@ EMail: matthieu.vial@schneider-electric.com
  3                 +-----&gt;|                  Header: GET 
  4                 | GET  |                   Token: 0x4a
  5                 |      |                Uri-Path: temperature
- 6                 |      |         Uri-Query: pmax="20";gt="25"
+ 6                 |      |         Uri-Query: pmax=20;gt="25"
  7                 |      |                 Observe: 0 (register)
  8                 |      |
  9   ____________  |&lt;-----+                  Header: 2.05 
