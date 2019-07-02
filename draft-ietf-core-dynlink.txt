@@ -135,8 +135,8 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
    are sent over the link to the other.  CoRE Link Format
    representations are used to configure, inspect, and maintain Link
    Bindings.  This specification additionally defines Conditional
-   Notification Attributes for use with Link Bindings and with the CoRE
-   Observe [RFC7641] method.
+   Notification Attributes for use with Link Bindings and with CoRE
+   Observe [RFC7641].
 
 2.  Terminology
 
@@ -674,9 +674,6 @@ Shelby, et al.           Expires January 3, 2020               [Page 12]
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
 
 
-   (Editor's Note: Usage of the PATCH method for fine-grained addition
-   and removal of individual bindings is under study.)
-
    The following example shows requests for discovering, retrieving and
    replacing bindings in a binding table.
 
@@ -687,9 +684,9 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
    Req: GET /bnd/
    Res: 2.05 Content (application/link-format)
    <coap://sensor.example.com/a/switch1/>;
-           rel=boundto;bind=obs;anchor=/a/fan,;bind="obs",
+           rel=boundto;anchor=/a/fan,;bind="obs",
    <coap://sensor.example.com/a/switch2/>;
-           rel=boundto;bind=obs;anchor=/a/light;bind="obs"
+           rel=boundto;anchor=/a/light;bind="obs"
 
    Req: PUT /bnd/ (Content-Format: application/link-format)
    <coap://sensor.example.com/s/light>;
@@ -702,6 +699,11 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
      rel="boundto";anchor="/a/light";bind="obs";pmin=10;pmax=60
 
                       Figure 2: Binding Table Example
+
+   Additional operations on the Binding Table can be specified in future
+   documents.  Such operations can include, for example, the usage of
+   the iPATCH or PATCH methods [RFC8132] for fine-grained addition and
+   removal of individual bindings or binding subsets.
 
 6.  Implementation Considerations
 
@@ -719,8 +721,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
    Theoretically this could occur in-line with the server internal
    sample period for the determining the resource value.  Implementors
    SHOULD consider the resolution needed before updating the resource,
-   e.g. updating the resource when a temperature sensor value changes by
-   0.001 degree versus 1 degree.
 
 
 
@@ -729,6 +729,9 @@ Shelby, et al.           Expires January 3, 2020               [Page 13]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
 
+
+   e.g. updating the resource when a temperature sensor value changes by
+   0.001 degree versus 1 degree.
 
    The initiation of a Link Binding can be delegated from a client to a
    link state machine implementation, which can be an embedded client or
@@ -775,9 +778,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
 
    Description:  The purpose of a boundto relation type is to indicate
       that there is a binding between a source resource and a
-      destination resource for the purposes of synchronizing their
-      content.
-
 
 
 
@@ -785,6 +785,9 @@ Shelby, et al.           Expires January 3, 2020               [Page 14]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
 
+
+      destination resource for the purposes of synchronizing their
+      content.
 
    Reference:  This specification.  Note to RFC editor: please insert
       the RFC of this specification.
@@ -832,15 +835,15 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
 
    draft-ietf-core-dynlink-07
 
-   o  Added reference code to illustrate attribute interactions for
-      observations
-
 
 
 Shelby, et al.           Expires January 3, 2020               [Page 15]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
 
+
+   o  Added reference code to illustrate attribute interactions for
+      observations
 
    draft-ietf-core-dynlink-06
 
@@ -888,15 +891,15 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
    o  General: The document has been restructured the make the
       information flow better.
 
-   o  Clause 3.1: The descriptions of the binding attributes have been
-      updated to clarify their usage.
-
 
 
 Shelby, et al.           Expires January 3, 2020               [Page 16]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
 
+
+   o  Clause 3.1: The descriptions of the binding attributes have been
+      updated to clarify their usage.
 
    o  Clause 3.1: A new clause has been added to discuss the
       interactions between the resources.
@@ -946,9 +949,6 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
 
 
 
-
-
-
 Shelby, et al.           Expires January 3, 2020               [Page 17]
 
 Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
@@ -966,6 +966,11 @@ Internet-Draft      Dynamic Resource Linking for CoRE          July 2019
               DOI 10.17487/RFC7641, September 2015,
               <https://www.rfc-editor.org/info/rfc7641>.
 
+   [RFC8132]  van der Stok, P., Bormann, C., and A. Sehgal, "PATCH and
+              FETCH Methods for the Constrained Application Protocol
+              (CoAP)", RFC 8132, DOI 10.17487/RFC8132, April 2017,
+              <https://www.rfc-editor.org/info/rfc8132>.
+
 Appendix A.  Examples
 
    This appendix provides some examples of the use of binding attribute
@@ -975,11 +980,6 @@ Appendix A.  Examples
    the header field.
 
 A.1.  Minimum Period (pmin) example
-
-
-
-
-
 
 
 

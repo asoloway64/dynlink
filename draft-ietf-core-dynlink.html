@@ -483,7 +483,7 @@ ul.toc li {
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
 <p id="rfc.section.1.p.1">IETF Standards for machine to machine communication in constrained environments describe a REST protocol <a href="#RFC7252" class="xref">[RFC7252]</a> and a set of related information standards that may be used to represent machine data and machine metadata in REST interfaces. CoRE Link-format <a href="#RFC6690" class="xref">[RFC6690]</a> is a standard for doing Web Linking <a href="#RFC8288" class="xref">[RFC8288]</a> in constrained environments.</p>
-<p id="rfc.section.1.p.2">This specification introduces the concept of a Link Binding, which defines a new link relation type to create a dynamic link between resources over which state updates are conveyed. Specifically, a Link Binding is a unidirectional link for binding the states of source and destination resources together such that updates to one are sent over the link to the other. CoRE Link Format representations are used to configure, inspect, and maintain Link Bindings. This specification additionally defines Conditional Notification Attributes for use with Link Bindings and with the CoRE Observe <a href="#RFC7641" class="xref">[RFC7641]</a> method.</p>
+<p id="rfc.section.1.p.2">This specification introduces the concept of a Link Binding, which defines a new link relation type to create a dynamic link between resources over which state updates are conveyed. Specifically, a Link Binding is a unidirectional link for binding the states of source and destination resources together such that updates to one are sent over the link to the other. CoRE Link Format representations are used to configure, inspect, and maintain Link Bindings. This specification additionally defines Conditional Notification Attributes for use with Link Bindings and with CoRE Observe <a href="#RFC7641" class="xref">[RFC7641]</a>.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -740,8 +740,7 @@ bool notifiable( Resource * r ) {
 </tr></tbody>
 </table>
 <p id="rfc.section.5.p.3">The REST methods GET and PUT are used to manipulate a Binding Table. A GET request simply returns the current state of a Binding Table. A request with a PUT method and a content format of application/link-format is used to clear the bindings to the table or replaces its entire contents. All links in the payload of a PUT rquest MUST have a relation type "boundto".</p>
-<p id="rfc.section.5.p.4">(Editor&#8217;s Note: Usage of the PATCH method for fine-grained addition and removal of individual bindings is under study.)</p>
-<p id="rfc.section.5.p.5">The following example shows requests for discovering, retrieving and replacing bindings in a binding table.</p>
+<p id="rfc.section.5.p.4">The following example shows requests for discovering, retrieving and replacing bindings in a binding table.</p>
 <div id="rfc.figure.2"></div>
 <div id="figbindexp"></div>
 <pre>
@@ -752,9 +751,9 @@ Res: 2.05 Content (application/link-format)
 Req: GET /bnd/
 Res: 2.05 Content (application/link-format)
 &lt;coap://sensor.example.com/a/switch1/&gt;;
-        rel=boundto;bind=obs;anchor=/a/fan,;bind="obs",
+        rel=boundto;anchor=/a/fan,;bind="obs",
 &lt;coap://sensor.example.com/a/switch2/&gt;;
-        rel=boundto;bind=obs;anchor=/a/light;bind="obs"
+        rel=boundto;anchor=/a/light;bind="obs"
 
 Req: PUT /bnd/ (Content-Format: application/link-format)
 &lt;coap://sensor.example.com/s/light&gt;;
@@ -767,6 +766,7 @@ Res: 2.05 Content (application/link-format)
   rel="boundto";anchor="/a/light";bind="obs";pmin=10;pmax=60
 </pre>
 <p class="figure">Figure 2: Binding Table Example</p>
+<p id="rfc.section.5.p.5">Additional operations on the Binding Table can be specified in future documents. Such operations can include, for example, the usage of the iPATCH or PATCH methods <a href="#RFC8132" class="xref">[RFC8132]</a> for fine-grained addition and removal of individual bindings or binding subsets.</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#Implementation" id="Implementation">Implementation Considerations</a>
 </h1>
@@ -935,6 +935,11 @@ EMail: matthieu.vial@schneider-electric.com
 <td class="reference"><b id="RFC7641">[RFC7641]</b></td>
 <td class="top">
 <a>Hartke, K.</a>, "<a href="https://tools.ietf.org/html/rfc7641">Observing Resources in the Constrained Application Protocol (CoAP)</a>", RFC 7641, DOI 10.17487/RFC7641, September 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8132">[RFC8132]</b></td>
+<td class="top">
+<a>van der Stok, P.</a>, <a>Bormann, C.</a> and <a>A. Sehgal</a>, "<a href="https://tools.ietf.org/html/rfc8132">PATCH and FETCH Methods for the Constrained Application Protocol (CoAP)</a>", RFC 8132, DOI 10.17487/RFC8132, April 2017.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.appendix.A">
