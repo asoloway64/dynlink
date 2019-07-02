@@ -78,13 +78,14 @@ table.header td, table#rfc\.headerblock td {
   line-height: 100%;
   margin: 10px 0 32px;
 }
-#rfc\.abstract+p, #rfc\.abstract p {
+#rfc\.abstract+p, #rfc\.abstract+p code, #rfc\.abstract+p samp, #rfc\.abstract+p tt {
   font-size: 20px;
   line-height: 28px;
 }
 
 samp, tt, code, pre, span.tt {
-  font: 13.5px Consolas, monospace;
+  font-size: 13.5px;
+  font-family: Consolas, monospace;
   font-size-adjust: none;
 }
 pre {
@@ -311,17 +312,19 @@ ul.toc li {
 <link href="#rfc.references.1" rel="Chapter" title="12.1 Normative References">
 <link href="#rfc.references.2" rel="Chapter" title="12.2 Informative References">
 <link href="#rfc.appendix.A" rel="Chapter" title="A Examples">
-<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Greater Than (gt) example">
-<link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Greater Than (gt) and Period Max (pmax) example">
+<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Minimum Period (pmin) example">
+<link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Maximum Period (pmax) example">
+<link href="#rfc.appendix.A.3" rel="Chapter" title="A.3 Greater Than (gt) example">
+<link href="#rfc.appendix.A.4" rel="Chapter" title="A.4 Greater Than (gt) and Period Max (pmax) example">
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.22.3 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.23.0 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Shelby, Z., Koster, M., Groves, C., Zhu, J., and B. Silverajan, Ed." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-core-dynlink-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-03-08" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-07-02" />
   <meta name="dct.abstract" content="This specification defines Link Bindings, which provide dynamic linking of state updates between resources, either on an endpoint or between endpoints, for systems using CoAP (RFC7252). This specification also defines Conditional Notification Attributes that work with Link Bindings or with CoAP Observe (RFC7641)." />
   <meta name="description" content="This specification defines Link Bindings, which provide dynamic linking of state updates between resources, either on an endpoint or between endpoints, for systems using CoAP (RFC7252). This specification also defines Conditional Notification Attributes that work with Link Bindings or with CoAP Observe (RFC7641)." />
 
@@ -345,7 +348,7 @@ ul.toc li {
 <td class="right">M. Koster</td>
 </tr>
 <tr>
-<td class="left">Expires: September 9, 2019</td>
+<td class="left">Expires: January 3, 2020</td>
 <td class="right">SmartThings</td>
 </tr>
 <tr>
@@ -374,7 +377,7 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">March 08, 2019</td>
+<td class="right">July 02, 2019</td>
 </tr>
 
     	
@@ -392,7 +395,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 9, 2019.</p>
+<p>This Internet-Draft will expire on January 3, 2020.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -462,9 +465,13 @@ ul.toc li {
 </li>
 </ul><li>Appendix A.   <a href="#rfc.appendix.A">Examples</a>
 </li>
-<ul><li>A.1.   <a href="#rfc.appendix.A.1">Greater Than (gt) example</a>
+<ul><li>A.1.   <a href="#rfc.appendix.A.1">Minimum Period (pmin) example</a>
 </li>
-<li>A.2.   <a href="#rfc.appendix.A.2">Greater Than (gt) and Period Max (pmax) example</a>
+<li>A.2.   <a href="#rfc.appendix.A.2">Maximum Period (pmax) example</a>
+</li>
+<li>A.3.   <a href="#rfc.appendix.A.3">Greater Than (gt) example</a>
+</li>
+<li>A.4.   <a href="#rfc.appendix.A.4">Greater Than (gt) and Period Max (pmax) example</a>
 </li>
 </ul><li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
@@ -516,32 +523,32 @@ ul.toc li {
 <tr>
 <td class="left">Minimum Period (s)</td>
 <td class="left">pmin</td>
-<td class="left">xsd:decimal (&gt;0)</td>
+<td class="left">xs:decimal (&gt;0)</td>
 </tr>
 <tr>
 <td class="left">Maximum Period (s)</td>
 <td class="left">pmax</td>
-<td class="left">xsd:decimal (&gt;0)</td>
+<td class="left">xs:decimal (&gt;0)</td>
 </tr>
 <tr>
 <td class="left">Change Step</td>
 <td class="left">st</td>
-<td class="left">xsd:decimal (&gt;0)</td>
+<td class="left">xs:decimal (&gt;0)</td>
 </tr>
 <tr>
 <td class="left">Greater Than</td>
 <td class="left">gt</td>
-<td class="left">xsd:decimal</td>
+<td class="left">xs:decimal</td>
 </tr>
 <tr>
 <td class="left">Less Than</td>
 <td class="left">lt</td>
-<td class="left">xsd:decimal</td>
+<td class="left">xs:decimal</td>
 </tr>
 <tr>
 <td class="left">Notification Band</td>
 <td class="left">band</td>
-<td class="left">xsd:boolean</td>
+<td class="left">xs:boolean</td>
 </tr>
 </tbody>
 </table>
@@ -645,7 +652,7 @@ bool notifiable( Resource * r ) {
 <tbody><tr>
 <td class="left">Binding method</td>
 <td class="left">bind</td>
-<td class="left">xsd:string</td>
+<td class="left">xs:string</td>
 </tr></tbody>
 </table>
 <p id="rfc.section.4.1.p.3">The following table gives a summary of the binding methods defined in this specification.</p>
@@ -828,7 +835,7 @@ EMail: matthieu.vial@schneider-electric.com
 
 <ul>
 <li>Reorganize the draft to introduce Conditional Notification Attributes at the beginning</li>
-<li>Made pmin and pmax type xsd:decimal to accommodate fractional second timing</li>
+<li>Made pmin and pmax type xs:decimal to accommodate fractional second timing</li>
 <li>updated the attribute descriptions. lt and gt notify on all crossings, both directions</li>
 <li>updated Binding Table description, removed interface description but introduced core.bnd rt attribute value</li>
 </ul>
@@ -936,10 +943,99 @@ EMail: matthieu.vial@schneider-electric.com
 <p id="rfc.section.A.p.1">This appendix provides some examples of the use of binding attribute / observe attributes.</p>
 <p id="rfc.section.A.p.2">Note: For brevity the only the method or response code is shown in the header field.</p>
 <h1 id="rfc.appendix.A.1">
-<a href="#rfc.appendix.A.1">A.1.</a> <a href="#greater-than-gt-example" id="greater-than-gt-example">Greater Than (gt) example</a>
+<a href="#rfc.appendix.A.1">A.1.</a> <a href="#minimum-period-pmin-example" id="minimum-period-pmin-example">Minimum Period (pmin) example</a>
 </h1>
 <div id="rfc.figure.3"></div>
 <div id="figbindexp1"></div>
+<pre>
+        Observed   CLIENT  SERVER     Actual
+    t   State         |      |         State
+        ____________  |      |  ____________
+    1                 |      |
+    2    unknown      |      |     18.5 Cel
+    3                 +-----&gt;|                  Header: GET
+    4                 | GET  |                   Token: 0x4a
+    5                 |      |                Uri-Path: temperature
+    6                 |      |               Uri-Query: pmin="10"
+    7                 |      |                 Observe: 0 (register)
+    8                 |      |
+    9   ____________  |&lt;-----+                  Header: 2.05
+   10                 | 2.05 |                   Token: 0x4a
+   11    18.5 Cel     |      |                 Observe: 9
+   12                 |      |                 Payload: "18.5 Cel"
+   13                 |      |  ____________
+   14                 |      |
+   15                 |      |     23 Cel
+   16                 |      |
+   17                 |      |
+   18                 |      |
+   19                 |      |  ____________
+   20   ____________  |&lt;-----+                  Header: 2.05
+   21                 | 2.05 |     26 Cel        Token: 0x4a
+   22    26 Cel       |      |                 Observe: 20
+   23                 |      |                 Payload: "26 Cel"
+   24                 |      |
+   25                 |      |
+</pre>
+<p class="figure">Figure 3: Client registers and receives one notification of the current state and one of a new state state when pmin time expires.</p>
+<h1 id="rfc.appendix.A.2">
+<a href="#rfc.appendix.A.2">A.2.</a> <a href="#maximum-period-pmax-example" id="maximum-period-pmax-example">Maximum Period (pmax) example</a>
+</h1>
+<div id="rfc.figure.4"></div>
+<div id="figbindexp2"></div>
+<pre>
+        Observed   CLIENT  SERVER     Actual
+    t   State         |      |         State
+        ____________  |      |  ____________
+    1                 |      |
+    2    unknown      |      |     18.5 Cel
+    3                 +-----&gt;|                  Header: GET
+    4                 | GET  |                   Token: 0x4a
+    5                 |      |                Uri-Path: temperature
+    6                 |      |               Uri-Query: pmax="20"
+    7                 |      |                 Observe: 0 (register)
+    8                 |      |
+    9   ____________  |&lt;-----+                  Header: 2.05
+   10                 | 2.05 |                   Token: 0x4a
+   11    18.5 Cel     |      |                 Observe: 9
+   12                 |      |                 Payload: "18.5 Cel"
+   13                 |      |
+   14                 |      |
+   15                 |      |  ____________
+   16   ____________  |&lt;-----+                  Header: 2.05
+   17                 | 2.05 |     23 Cel        Token: 0x4a
+   18    23 Cel       |      |                 Observe: 16
+   19                 |      |                 Payload: "23 Cel"
+   20                 |      |
+   21                 |      |
+   22                 |      |
+   23                 |      |
+   24                 |      |
+   25                 |      |
+   26                 |      |
+   27                 |      |
+   28                 |      |
+   29                 |      |
+   30                 |      |
+   31                 |      |
+   32                 |      |
+   33                 |      |
+   34                 |      |   
+   35                 |      |
+   36                 |      |  ____________
+   37   ____________  |&lt;-----+                  Header: 2.05
+   38                 | 2.05 |     23 Cel        Token: 0x4a
+   39    23 Cel       |      |                 Observe: 37
+   40                 |      |                 Payload: "23 Cel"
+   41                 |      |
+   42                 |      |
+</pre>
+<p class="figure">Figure 4: Client registers and receives one notification of the current state, one of a new state and one of an unchanged state when pmax time expires.</p>
+<h1 id="rfc.appendix.A.3">
+<a href="#rfc.appendix.A.3">A.3.</a> <a href="#greater-than-gt-example" id="greater-than-gt-example">Greater Than (gt) example</a>
+</h1>
+<div id="rfc.figure.5"></div>
+<div id="figbindexp3"></div>
 <pre>
      Observed   CLIENT  SERVER     Actual
  t   State         |      |         State
@@ -966,12 +1062,12 @@ EMail: matthieu.vial@schneider-electric.com
 20                 |      |                 
 21                 |      |
 </pre>
-<p class="figure">Figure 3: Client Registers and Receives one Notification of the Current State and One of a New State when it passes through the greather than threshold of 25.</p>
-<h1 id="rfc.appendix.A.2">
-<a href="#rfc.appendix.A.2">A.2.</a> <a href="#greater-than-gt-and-period-max-pmax-example" id="greater-than-gt-and-period-max-pmax-example">Greater Than (gt) and Period Max (pmax) example</a>
+<p class="figure">Figure 5: Client registers and receives one notification of the current state and one of a new state when it passes through the greater than threshold of 25.</p>
+<h1 id="rfc.appendix.A.4">
+<a href="#rfc.appendix.A.4">A.4.</a> <a href="#greater-than-gt-and-period-max-pmax-example" id="greater-than-gt-and-period-max-pmax-example">Greater Than (gt) and Period Max (pmax) example</a>
 </h1>
-<div id="rfc.figure.4"></div>
-<div id="figbindexp2"></div>
+<div id="rfc.figure.6"></div>
+<div id="figbindexp4"></div>
 <pre>
      Observed   CLIENT  SERVER     Actual
  t   State         |      |         State
@@ -1019,7 +1115,7 @@ EMail: matthieu.vial@schneider-electric.com
 41                 |      |                 
 42                 |      |
 </pre>
-<p class="figure">Figure 4: Client Registers and Receives one Notification of the Current State, one when pmax time expires and one of a new State when it passes through the greather than threshold of 25.</p>
+<p class="figure">Figure 6: Client registers and receives one notification of the current state, one when pmax time expires and one of a new state when it passes through the greater than threshold of 25.</p>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
@@ -1136,3 +1232,4 @@ EMail: matthieu.vial@schneider-electric.com
 
 </body>
 </html>
+
